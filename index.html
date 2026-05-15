@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Free Cash Flow Ventures, LLC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #E6E6E6;
+    color: #000000;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 92%;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+header {
+    padding: 36px 0;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.brand img {
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
+}
+
+.brand-text h1 {
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.04em;
+}
+
+.brand-text p {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    margin-top: 4px;
+}
+
+nav {
+    display: flex;
+    gap: 48px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #000000;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+
+.hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    min-height: 78vh;
+    gap: 60px;
+}
+
+.hero-left small {
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 12px;
+}
+
+.hero-left h2 {
+    font-size: 78px;
+    line-height: 0.98;
+    letter-spacing: -0.06em;
+    max-width: 700px;
+    margin-top: 28px;
+    font-weight: 600;
+}
+
+.hero-left p {
+    margin-top: 34px;
+    font-size: 22px;
+    line-height: 1.7;
+    max-width: 640px;
+    color: rgba(0,0,0,0.75);
+}
+
+.hero-button {
+    margin-top: 48px;
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+    background: #000000;
+    color: white;
+    text-decoration: none;
+    padding: 24px 38px;
+    border-radius: 18px;
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.hero-note {
+    margin-top: 18px;
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+.hero-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-right img {
+    width: 95%;
+    max-width: 720px;
+}
+
+.section-title {
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+}
+
+.dataset-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+    margin-top: 30px;
+}
+
+.dataset-card {
+    border: 1px solid rgba(0,0,0,0.12);
+    border-radius: 28px;
+    padding: 26px;
+    background: rgba(255,255,255,0.22);
+    backdrop-filter: blur(8px);
+    transition: 0.3s ease;
+}
+
+.dataset-card:hover {
+    transform: translateY(-6px);
+}
+
+.dataset-image {
+    height: 280px;
+    border-radius: 22px;
+    background: linear-gradient(to bottom right, #0a0a0a, #2c2c2c);
+    margin-bottom: 24px;
+}
+
+.dataset-category {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    opacity: 0.7;
+}
+
+.dataset-title {
+    font-size: 34px;
+    line-height: 1.08;
+    letter-spacing: -0.05em;
+    margin-top: 14px;
+    font-weight: 600;
+}
+
+.dataset-description {
+    margin-top: 18px;
+    line-height: 1.8;
+    font-size: 15px;
+    opacity: 0.78;
+}
+
+.dataset-footer {
+    margin-top: 28px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dataset-footer span {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.access-box {
+    margin-top: 90px;
+    border: 1px solid rgba(0,0,0,0.12);
+    border-radius: 32px;
+    padding: 54px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255,255,255,0.18);
+}
+
+.access-left h3 {
+    font-size: 44px;
+    letter-spacing: -0.05em;
+}
+
+.access-left p {
+    margin-top: 16px;
+    font-size: 17px;
+    line-height: 1.8;
+    max-width: 700px;
+    opacity: 0.76;
+}
+
+.access-button {
+    background: black;
+    color: white;
+    text-decoration: none;
+    padding: 24px 34px;
+    border-radius: 18px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 13px;
+}
+
+footer {
+    margin-top: 120px;
+    padding: 50px 0 80px;
+    border-top: 1px solid rgba(0,0,0,0.08);
+}
+
+.footer-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.footer-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.footer-left img {
+    width: 52px;
+}
+
+.footer-left h4 {
+    font-size: 24px;
+    letter-spacing: -0.04em;
+}
+
+.footer-links {
+    display: flex;
+    gap: 80px;
+}
+
+.footer-column h5 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    margin-bottom: 18px;
+}
+
+.footer-column a {
+    display: block;
+    margin-bottom: 12px;
+    text-decoration: none;
+    color: rgba(0,0,0,0.78);
+}
+
+.footer-bottom {
+    margin-top: 48px;
+    font-size: 13px;
+    opacity: 0.55;
+}
+
+@media (max-width: 1200px) {
+    .dataset-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        padding-top: 40px;
+    }
+
+    .hero-left h2 {
+        font-size: 62px;
+    }
+}
+
+@media (max-width: 768px) {
+    nav {
+        display: none;
+    }
+
+    .dataset-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-left h2 {
+        font-size: 48px;
+    }
+
+    .access-box {
+        flex-direction: column;
+        gap: 32px;
+        align-items: flex-start;
+    }
+
+    .footer-grid {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .footer-links {
+        gap: 40px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <div class="container nav">
+        <div class="brand">
+            <img src="logo.png" alt="FCF Ventures Logo">
+            <div class="brand-text">
+                <h1>Free Cash Flow Ventures, LLC</h1>
+                <p>Delaware</p>
+            </div>
+        </div>
+
+        <nav>
+            <a href="#">Datasets</a>
+            <a href="#">Request Access</a>
+            <a href="#">About</a>
+            <a href="#">Sign In</a>
+        </nav>
+    </div>
+</header>
+
+<section class="hero container">
+    <div class="hero-left">
+        <small>Premium Datasets. Institutional Intelligence.</small>
+
+        <h2>Ultra Valuable Datasets for a Smarter Edge.</h2>
+
+        <p>
+            We curate and distribute highly specialized institutional datasets across infrastructure, capital markets, sovereign finance, energy systems, and strategic intelligence.
+        </p>
+
+        <a href="#" class="hero-button">
+            Request Access
+            ↗
+        </a>
+
+        <div class="hero-note">
+            Price upon request.
+        </div>
+    </div>
+
+    <div class="hero-right">
+        <img src="logo.png" alt="FCF Ventures">
+    </div>
+</section>
+
+<section class="container">
+
+    <div class="section-title">Featured Datasets</div>
+
+    <div class="dataset-grid">
+
+        <div class="dataset-card">
+            <div class="dataset-image"></div>
+            <div class="dataset-category">Infrastructure</div>
+            <div class="dataset-title">China SOE Infrastructure Mapping</div>
+            <div class="dataset-description">
+                Institutional-grade ownership mapping across EPCs, SOEs, SPVs, and infrastructure transaction ecosystems.
+            </div>
+            <div class="dataset-footer">
+                <span>Price Upon Request</span>
+                <span>↗</span>
+            </div>
+        </div>
+
+        <div class="dataset-card">
+            <div class="dataset-image"></div>
+            <div class="dataset-category">Capital Markets</div>
+            <div class="dataset-title">Global Sovereign Capital Flows</div>
+            <div class="dataset-description">
+                Curated institutional capital flow datasets focused on sovereign wealth funds, infrastructure mandates, and strategic capital allocation.
+            </div>
+            <div class="dataset-footer">
+                <span>Price Upon Request</span>
+                <span>↗</span>
+            </div>
+        </div>
+
+        <div class="dataset-card">
+            <div class="dataset-image"></div>
+            <div class="dataset-category">Energy</div>
+            <div class="dataset-title">Energy Transition Intelligence</div>
+            <div class="dataset-description">
+                High-value energy infrastructure datasets across solar, utilities, hydrogen, and grid investment ecosystems.
+            </div>
+            <div class="dataset-footer">
+                <span>Price Upon Request</span>
+                <span>↗</span>
+            </div>
+        </div>
+
+        <div class="dataset-card">
+            <div class="dataset-image"></div>
+            <div class="dataset-category">Macro Intelligence</div>
+            <div class="dataset-title">Strategic Infrastructure Signals</div>
+            <div class="dataset-description">
+                Proprietary institutional signal datasets integrating project financing, regional trends, sovereign flows, and infrastructure momentum.
+            </div>
+            <div class="dataset-footer">
+                <span>Price Upon Request</span>
+                <span>↗</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="access-box">
+        <div class="access-left">
+            <div class="section-title">Access By Request Only</div>
+            <h3>Our datasets are not for everyone.</h3>
+            <p>
+                Due to the strategic and institutional nature of our datasets, access is granted selectively upon request and review.
+            </p>
+        </div>
+
+        <a href="#" class="access-button">
+            Request Access ↗
+        </a>
+    </div>
+
+</section>
+
+<footer>
+    <div class="container">
+
+        <div class="footer-grid">
+
+            <div class="footer-left">
+                <img src="logo.png" alt="FCF Ventures Logo">
+                <div>
+                    <h4>Free Cash Flow Ventures, LLC</h4>
+                    <p>Delaware</p>
+                </div>
+            </div>
+
+            <div class="footer-links">
+
+                <div class="footer-column">
+                    <h5>Company</h5>
+                    <a href="#">About</a>
+                    <a href="#">Contact</a>
+                </div>
+
+                <div class="footer-column">
+                    <h5>Legal</h5>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+
+                <div class="footer-column">
+                    <h5>Access</h5>
+                    <a href="#">Request Access</a>
+                    <a href="#">Sign In</a>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            © 2026 Free Cash Flow Ventures, LLC. All rights reserved.
+        </div>
+
+    </div>
+</footer>
+
+</body>
+</html>
