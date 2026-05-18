@@ -1,513 +1,1128 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Free Cash Flow Ventures, LLC</title>
-<link rel="icon" href="favicon.ico" sizes="any">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
-body {
-    background: #E6E6E6;
-    color: #000000;
-    font-family: 'Inter', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-}
+    <!-- ========================================= -->
+    <!-- META -->
+    <!-- ========================================= -->
 
-.container {
-    width: 92%;
-    max-width: 1440px;
-    margin: 0 auto;
-}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-header {
-    padding: 36px 0;
-}
+    <title>Free Cash Flow Ventures, LLC</title>
 
-.nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+    <!-- ========================================= -->
+    <!-- FAVICON -->
+    <!-- ========================================= -->
 
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-}
+    <link rel="icon" href="favicon.ico" sizes="any" />
 
-.brand img {
-    width: 58px;
-    height: 58px;
-    object-fit: contain;
-}
+    <!-- ========================================= -->
+    <!-- TYPOGRAPHY -->
+    <!-- ========================================= -->
 
-.brand-text h1 {
-    font-size: 28px;
-    font-weight: 600;
-    letter-spacing: -0.04em;
-}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-.brand-text p {
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    margin-top: 4px;
-}
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet"
+    />
 
-nav {
-    display: flex;
-    gap: 48px;
-}
+    <!-- ========================================= -->
+    <!-- STYLES -->
+    <!-- ========================================= -->
 
-nav a {
-    text-decoration: none;
-    color: #000000;
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-}
+    <style>
 
-.hero {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    min-height: 78vh;
-    gap: 60px;
-}
+        /* =========================================
+           RESET
+        ========================================= */
 
-.hero-left small {
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    font-size: 12px;
-}
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-.hero-left h2 {
-    font-size: 78px;
-    line-height: 0.98;
-    letter-spacing: -0.06em;
-    max-width: 700px;
-    margin-top: 28px;
-    font-weight: 600;
-}
+        html {
+            scroll-behavior: smooth;
+        }
 
-.hero-left p {
-    margin-top: 34px;
-    font-size: 22px;
-    line-height: 1.7;
-    max-width: 640px;
-    color: rgba(0,0,0,0.75);
-}
+        body {
+            background: #E6E6E6;
+            color: #000000;
+            font-family: 'IBM Plex Mono', monospace;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
 
-.hero-button {
-    margin-top: 48px;
-    display: inline-flex;
-    align-items: center;
-    gap: 18px;
-    background: #000000;
-    color: white;
-    text-decoration: none;
-    padding: 24px 38px;
-    border-radius: 18px;
-    font-size: 14px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-}
+        img {
+            display: block;
+            max-width: 100%;
+        }
 
-.hero-note {
-    margin-top: 18px;
-    font-size: 14px;
-    opacity: 0.7;
-}
+        a {
+            color: inherit;
+        }
 
-.hero-right {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+        /* =========================================
+           ROOT
+        ========================================= */
 
-.hero-right img {
-    width: 95%;
-    max-width: 720px;
-}
+        :root {
+            --container-width: 1280px;
 
-.section-title {
-    font-size: 13px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    margin-bottom: 28px;
-}
+            --black: #000000;
+            --white: #ffffff;
+            --background: #E6E6E6;
 
-.dataset-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 28px;
-    margin-top: 30px;
-}
+            --text-muted: rgba(0, 0, 0, 0.72);
+            --text-soft: rgba(0, 0, 0, 0.58);
 
-.dataset-card {
-    border: 1px solid rgba(0,0,0,0.12);
-    border-radius: 28px;
-    padding: 26px;
-    background: rgba(255,255,255,0.22);
-    backdrop-filter: blur(8px);
-    transition: 0.3s ease;
-}
+            --border-light: rgba(0, 0, 0, 0.08);
+            --border-medium: rgba(0, 0, 0, 0.12);
+            --border-strong: rgba(0, 0, 0, 0.22);
 
-.dataset-card:hover {
-    transform: translateY(-6px);
-}
+            --card-background: rgba(255, 255, 255, 0.18);
+            --card-background-hover: rgba(255, 255, 255, 0.28);
 
-.dataset-image {
-    height: 280px;
-    border-radius: 22px;
-    background: linear-gradient(to bottom right, #0a0a0a, #2c2c2c);
-    margin-bottom: 24px;
-}
+            --transition-fast: 0.2s ease;
 
-.dataset-category {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.16em;
-    opacity: 0.7;
-}
+            --radius-small: 10px;
+            --radius-medium: 14px;
+        }
 
-.dataset-title {
-    font-size: 34px;
-    line-height: 1.08;
-    letter-spacing: -0.05em;
-    margin-top: 14px;
-    font-weight: 600;
-}
+        /* =========================================
+           GLOBAL
+        ========================================= */
 
-.dataset-description {
-    margin-top: 18px;
-    line-height: 1.8;
-    font-size: 15px;
-    opacity: 0.78;
-}
+        .container {
+            width: 92%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+        }
 
-.dataset-footer {
-    margin-top: 28px;
-    padding-top: 22px;
-    border-top: 1px solid rgba(0,0,0,0.08);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+        .section-title {
+            margin-bottom: 18px;
 
-.dataset-footer span {
-    font-size: 12px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-}
+            font-size: 11px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
 
-.access-box {
-    margin-top: 90px;
-    border: 1px solid rgba(0,0,0,0.12);
-    border-radius: 32px;
-    padding: 54px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(255,255,255,0.18);
-}
+            opacity: 0.62;
+        }
 
-.access-left h3 {
-    font-size: 44px;
-    letter-spacing: -0.05em;
-}
+        /* =========================================
+           HEADER
+        ========================================= */
 
-.access-left p {
-    margin-top: 16px;
-    font-size: 17px;
-    line-height: 1.8;
-    max-width: 700px;
-    opacity: 0.76;
-}
+        .site-header {
+            padding: 36px 0;
+        }
 
-.access-button {
-    background: black;
-    color: white;
-    text-decoration: none;
-    padding: 24px 34px;
-    border-radius: 18px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    font-size: 13px;
-}
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+        }
 
-footer {
-    margin-top: 120px;
-    padding: 50px 0 80px;
-    border-top: 1px solid rgba(0,0,0,0.08);
-}
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
 
-.footer-grid {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-}
+        .brand__logo {
+            width: 58px;
+            height: 58px;
+            object-fit: contain;
+        }
 
-.footer-left {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
+        .brand__title {
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: -0.03em;
+        }
 
-.footer-left img {
-    width: 52px;
-}
+        .brand__subtitle {
+            margin-top: 4px;
 
-.footer-left h4 {
-    font-size: 24px;
-    letter-spacing: -0.04em;
-}
+            font-size: 11px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
 
-.footer-links {
-    display: flex;
-    gap: 80px;
-}
+            opacity: 0.72;
+        }
 
-.footer-column h5 {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.16em;
-    margin-bottom: 18px;
-}
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 48px;
+        }
 
-.footer-column a {
-    display: block;
-    margin-bottom: 12px;
-    text-decoration: none;
-    color: rgba(0,0,0,0.78);
-}
+        .nav-links a {
+            text-decoration: none;
 
-.footer-bottom {
-    margin-top: 48px;
-    font-size: 13px;
-    opacity: 0.55;
-}
+            font-size: 12px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
 
-@media (max-width: 1200px) {
-    .dataset-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+            opacity: 0.78;
 
-    .hero {
-        grid-template-columns: 1fr;
-        padding-top: 40px;
-    }
+            transition: opacity var(--transition-fast);
+        }
 
-    .hero-left h2 {
-        font-size: 62px;
-    }
-}
+        .nav-links a:hover {
+            opacity: 1;
+        }
 
-@media (max-width: 768px) {
-    nav {
-        display: none;
-    }
+        /* =========================================
+           HERO
+        ========================================= */
 
-    .dataset-grid {
-        grid-template-columns: 1fr;
-    }
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
 
-    .hero-left h2 {
-        font-size: 48px;
-    }
+            gap: 60px;
 
-    .access-box {
-        flex-direction: column;
-        gap: 32px;
-        align-items: flex-start;
-    }
+            padding: 30px 0 70px;
+        }
 
-    .footer-grid {
-        flex-direction: column;
-        gap: 40px;
-    }
+        .hero__eyebrow {
+            font-size: 11px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
 
-    .footer-links {
-        gap: 40px;
-    }
-}
-</style>
+            opacity: 0.65;
+        }
+
+        .hero__title {
+            max-width: 620px;
+            margin-top: 24px;
+
+            font-size: 56px;
+            font-weight: 600;
+            line-height: 1.02;
+            letter-spacing: -0.05em;
+        }
+
+        .hero__description {
+            max-width: 620px;
+            margin-top: 28px;
+
+            color: var(--text-muted);
+
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .hero__visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero__visual img {
+            width: 92%;
+            max-width: 620px;
+            opacity: 0.94;
+        }
+
+        /* =========================================
+           DATASETS
+        ========================================= */
+
+        .datasets {
+            padding-bottom: 20px;
+        }
+
+        .dataset-scroll {
+            overflow-x: auto;
+            overflow-y: hidden;
+
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+
+            padding-bottom: 10px;
+
+            cursor: grab;
+            user-select: none;
+            touch-action: pan-x;
+            overscroll-behavior-x: contain;
+            scroll-behavior: auto;
+        }
+
+        .dataset-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .dataset-scroll.is-dragging {
+            cursor: grabbing;
+        }
+
+        .dataset-grid {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 24px;
+
+            width: max-content;
+        }
+
+        .dataset-card {
+            flex: 0 0 auto;
+
+            width: 340px;
+
+            padding: 22px;
+
+            display: flex;
+            flex-direction: column;
+
+            border: 1px solid var(--border-medium);
+            border-radius: var(--radius-medium);
+
+            background: var(--card-background);
+
+            user-select: none;
+
+            transition:
+                background var(--transition-fast),
+                border-color var(--transition-fast),
+                transform var(--transition-fast);
+        }
+
+        .dataset-card:hover {
+            border-color: var(--border-strong);
+            background: var(--card-background-hover);
+            transform: translateY(-2px);
+        }
+
+        .dataset-card__image {
+            height: 190px;
+            margin-bottom: 22px;
+
+            border-radius: var(--radius-small);
+
+            background:
+                linear-gradient(
+                    to bottom right,
+                    #0a0a0a,
+                    #2c2c2c
+                );
+        }
+
+        .dataset-card__category {
+            font-size: 10px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+
+            opacity: 0.56;
+        }
+
+        .dataset-card__title {
+            margin-top: 12px;
+
+            font-size: 24px;
+            font-weight: 600;
+            line-height: 1.12;
+            letter-spacing: -0.04em;
+        }
+
+        .dataset-card__description {
+            flex-grow: 1;
+
+            margin-top: 16px;
+
+            font-size: 13px;
+            line-height: 1.9;
+
+            opacity: 0.72;
+        }
+
+        .dataset-card__footer {
+            margin-top: 26px;
+            padding-top: 18px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            border-top: 1px solid var(--border-light);
+        }
+
+        .dataset-card__footer span {
+            font-size: 10px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+
+            opacity: 0.64;
+        }
+
+        /* =========================================
+           ACCESS
+        ========================================= */
+
+        .access-box {
+            margin-top: 70px;
+            padding-top: 40px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+
+            border-top: 1px solid var(--border-light);
+        }
+
+        .access-box__title {
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: -0.04em;
+        }
+
+        .access-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 18px 26px;
+
+            border-radius: 12px;
+
+            background: var(--black);
+            color: var(--white);
+
+            text-decoration: none;
+
+            font-size: 11px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+
+            white-space: nowrap;
+
+            transition:
+                opacity var(--transition-fast),
+                transform var(--transition-fast);
+        }
+
+        .access-button:hover {
+            opacity: 0.92;
+            transform: translateY(-1px);
+        }
+
+        /* =========================================
+           FOOTER
+        ========================================= */
+
+        .site-footer {
+            margin-top: 70px;
+            padding: 50px 0 80px;
+
+            border-top: 1px solid var(--border-light);
+        }
+
+        .footer-grid {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+
+            gap: 40px;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .footer-brand img {
+            width: 48px;
+        }
+
+        .footer-brand h4 {
+            font-size: 18px;
+            letter-spacing: -0.03em;
+        }
+
+        .footer-brand small {
+            display: block;
+            margin-top: 4px;
+            opacity: 0.6;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 70px;
+        }
+
+        .footer-column h5 {
+            margin-bottom: 16px;
+
+            font-size: 10px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+
+            opacity: 0.58;
+        }
+
+        .footer-column a {
+            display: block;
+            margin-bottom: 10px;
+
+            color: var(--text-muted);
+            text-decoration: none;
+
+            font-size: 12px;
+        }
+
+        .footer-column a:hover {
+            opacity: 1;
+        }
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 1200px) {
+
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 768px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .brand__title {
+                font-size: 19px;
+            }
+
+            .brand__subtitle {
+                font-size: 10px;
+            }
+
+            .hero {
+                gap: 40px;
+            }
+
+            .hero__title {
+                font-size: 42px;
+            }
+
+            .hero__description {
+                font-size: 15px;
+            }
+
+            .dataset-card {
+                width: 300px;
+            }
+
+            .access-box {
+                flex-direction: column;
+                align-items: flex-start;
+
+                gap: 14px;
+            }
+
+            .footer-grid {
+                flex-direction: column;
+            }
+
+            .footer-links {
+                gap: 50px;
+            }
+
+        }
+
+        @media (max-width: 480px) {
+
+            .brand {
+                gap: 12px;
+            }
+
+            .brand__logo {
+                width: 46px;
+                height: 46px;
+            }
+
+            .brand__title {
+                font-size: 16px;
+            }
+
+            .hero__title {
+                font-size: 36px;
+            }
+
+            .dataset-card {
+                width: 280px;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+        }
+
+    </style>
+
 </head>
+
 <body>
 
-<header>
-    <div class="container nav">
-        <div class="brand">
-            <img src="logo.png" alt="FCF Ventures Logo">
-            <div class="brand-text">
-                <h1>Free Cash Flow Ventures, LLC</h1>
-                <p>Delaware</p>
-            </div>
-        </div>
+    <!-- ========================================= -->
+    <!-- HEADER -->
+    <!-- ========================================= -->
 
-        <nav>
-            <a href="#">Datasets</a>
-            <a href="#">Request Access</a>
-            <a href="#">About</a>
-            <a href="#">Sign In</a>
-        </nav>
-    </div>
-</header>
+    <header class="site-header">
 
-<section class="hero container">
-    <div class="hero-left">
-        <small>Premium Datasets. Institutional Intelligence.</small>
+        <div class="container navbar">
 
-        <h2>Ultra Valuable Datasets for a Smarter Edge.</h2>
+            <div class="brand">
 
-        <p>
-            We curate and distribute highly specialized institutional datasets across infrastructure, capital markets, sovereign finance, energy systems, and strategic intelligence.
-        </p>
+                <img
+                    class="brand__logo"
+                    src="logo.png"
+                    alt="FCF Ventures Logo"
+                    draggable="false"
+                />
 
-        <a href="#" class="hero-button">
-            Request Access
-            ↗
-        </a>
-
-        <div class="hero-note">
-            Price upon request.
-        </div>
-    </div>
-
-    <div class="hero-right">
-        <img src="logo.png" alt="FCF Ventures">
-    </div>
-</section>
-
-<section class="container">
-
-    <div class="section-title">Featured Datasets</div>
-
-    <div class="dataset-grid">
-
-        <div class="dataset-card">
-            <div class="dataset-image"></div>
-            <div class="dataset-category">Infrastructure</div>
-            <div class="dataset-title">China SOE Infrastructure Mapping</div>
-            <div class="dataset-description">
-                Institutional-grade ownership mapping across EPCs, SOEs, SPVs, and infrastructure transaction ecosystems.
-            </div>
-            <div class="dataset-footer">
-                <span>Price Upon Request</span>
-                <span>↗</span>
-            </div>
-        </div>
-
-        <div class="dataset-card">
-            <div class="dataset-image"></div>
-            <div class="dataset-category">Capital Markets</div>
-            <div class="dataset-title">Global Sovereign Capital Flows</div>
-            <div class="dataset-description">
-                Curated institutional capital flow datasets focused on sovereign wealth funds, infrastructure mandates, and strategic capital allocation.
-            </div>
-            <div class="dataset-footer">
-                <span>Price Upon Request</span>
-                <span>↗</span>
-            </div>
-        </div>
-
-        <div class="dataset-card">
-            <div class="dataset-image"></div>
-            <div class="dataset-category">Energy</div>
-            <div class="dataset-title">Energy Transition Intelligence</div>
-            <div class="dataset-description">
-                High-value energy infrastructure datasets across solar, utilities, hydrogen, and grid investment ecosystems.
-            </div>
-            <div class="dataset-footer">
-                <span>Price Upon Request</span>
-                <span>↗</span>
-            </div>
-        </div>
-
-        <div class="dataset-card">
-            <div class="dataset-image"></div>
-            <div class="dataset-category">Macro Intelligence</div>
-            <div class="dataset-title">Strategic Infrastructure Signals</div>
-            <div class="dataset-description">
-                Proprietary institutional signal datasets integrating project financing, regional trends, sovereign flows, and infrastructure momentum.
-            </div>
-            <div class="dataset-footer">
-                <span>Price Upon Request</span>
-                <span>↗</span>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="access-box">
-        <div class="access-left">
-            <div class="section-title">Access By Request Only</div>
-            <h3>Our datasets are not for everyone.</h3>
-            <p>
-                Due to the strategic and institutional nature of our datasets, access is granted selectively upon request and review.
-            </p>
-        </div>
-
-        <a href="#" class="access-button">
-            Request Access ↗
-        </a>
-    </div>
-
-</section>
-
-<footer>
-    <div class="container">
-
-        <div class="footer-grid">
-
-            <div class="footer-left">
-                <img src="logo.png" alt="FCF Ventures Logo">
                 <div>
-                    <h4>Free Cash Flow Ventures, LLC</h4>
-                    <p>Delaware</p>
+
+                    <h1 class="brand__title">
+                        Free Cash Flow Ventures, LLC
+                    </h1>
+
+                    <p class="brand__subtitle">
+                        Delaware, US
+                    </p>
+
                 </div>
+
             </div>
 
-            <div class="footer-links">
+            <nav class="nav-links" aria-label="Primary navigation">
 
-                <div class="footer-column">
-                    <h5>Company</h5>
-                    <a href="#">About</a>
-                    <a href="#">Contact</a>
+                <a href="#datasets">
+                    Datasets
+                </a>
+
+                <a href="about.html">
+                    About
+                </a>
+
+                <a href="contact.html">
+                    Contact
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+    <!-- ========================================= -->
+    <!-- MAIN -->
+    <!-- ========================================= -->
+
+    <main>
+
+        <!-- ========================================= -->
+        <!-- HERO -->
+        <!-- ========================================= -->
+
+        <section class="hero container">
+
+            <div>
+
+                <small class="hero__eyebrow">
+                    Energy Infrastructure. Institutional Long-Term Capital.
+                </small>
+
+                <h2 class="hero__title">
+                    LLM-Optimized Infrastructure Datasets.
+                </h2>
+
+                <p class="hero__description">
+                    Sovereign capital, infrastructure ownership,
+                    EPC ecosystems, and developer intelligence.
+                </p>
+
+            </div>
+
+            <div class="hero__visual">
+
+                <img
+                    src="logo.png"
+                    alt="FCF Ventures"
+                    draggable="false"
+                />
+
+            </div>
+
+        </section>
+
+        <!-- ========================================= -->
+        <!-- DATASETS -->
+        <!-- ========================================= -->
+
+        <section
+            class="container datasets"
+            id="datasets"
+        >
+
+            <div class="section-title">
+                Institutional Dataset Access
+            </div>
+
+            <div
+                class="dataset-scroll"
+                id="datasetScroll"
+                aria-label="Scrollable dataset cards"
+            >
+
+                <div
+                    class="dataset-grid"
+                    id="datasetGrid"
+                >
+
+                    <article class="dataset-card">
+
+                        <div class="dataset-card__image"></div>
+
+                        <div class="dataset-card__category">
+                            Generation
+                        </div>
+
+                        <h3 class="dataset-card__title">
+                            Power Generation
+                        </h3>
+
+                        <p class="dataset-card__description">
+                            Core producing assets across solar,
+                            wind, hydro, gas, nuclear, and
+                            utility-scale generation systems.
+                        </p>
+
+                        <div class="dataset-card__footer">
+                            <span>Institutional Access</span>
+                            <span>↗</span>
+                        </div>
+
+                    </article>
+
+                    <article class="dataset-card">
+
+                        <div class="dataset-card__image"></div>
+
+                        <div class="dataset-card__category">
+                            Grid
+                        </div>
+
+                        <h3 class="dataset-card__title">
+                            Transmission / Grid
+                        </h3>
+
+                        <p class="dataset-card__description">
+                            Regulated network infrastructure
+                            including TSOs, DSOs, substations,
+                            interconnectors, and transmission systems.
+                        </p>
+
+                        <div class="dataset-card__footer">
+                            <span>Institutional Access</span>
+                            <span>↗</span>
+                        </div>
+
+                    </article>
+
+                    <article class="dataset-card">
+
+                        <div class="dataset-card__image"></div>
+
+                        <div class="dataset-card__category">
+                            Storage
+                        </div>
+
+                        <h3 class="dataset-card__title">
+                            Storage & Flexibility
+                        </h3>
+
+                        <p class="dataset-card__description">
+                            Balancing and reliability infrastructure
+                            including BESS, pumped hydro,
+                            ancillary services, and flexibility assets.
+                        </p>
+
+                        <div class="dataset-card__footer">
+                            <span>Institutional Access</span>
+                            <span>↗</span>
+                        </div>
+
+                    </article>
+
+                    <article class="dataset-card">
+
+                        <div class="dataset-card__image"></div>
+
+                        <div class="dataset-card__category">
+                            Midstream
+                        </div>
+
+                        <h3 class="dataset-card__title">
+                            Gas & Midstream
+                        </h3>
+
+                        <p class="dataset-card__description">
+                            LNG terminals, pipelines, storage systems,
+                            compressors, and strategic gas
+                            infrastructure networks.
+                        </p>
+
+                        <div class="dataset-card__footer">
+                            <span>Institutional Access</span>
+                            <span>↗</span>
+                        </div>
+
+                    </article>
+
+                    <article class="dataset-card">
+
+                        <div class="dataset-card__image"></div>
+
+                        <div class="dataset-card__category">
+                            Transition
+                        </div>
+
+                        <h3 class="dataset-card__title">
+                            Energy Transition
+                        </h3>
+
+                        <p class="dataset-card__description">
+                            Hydrogen, CCS, renewable fuels,
+                            industrial decarbonization, and
+                            long-duration transition infrastructure systems.
+                        </p>
+
+                        <div class="dataset-card__footer">
+                            <span>Institutional Access</span>
+                            <span>↗</span>
+                        </div>
+
+                    </article>
+
+                    <article class="dataset-card">
+
+                        <div class="dataset-card__image"></div>
+
+                        <div class="dataset-card__category">
+                            Digital
+                        </div>
+
+                        <h3 class="dataset-card__title">
+                            Digital Infrastructure
+                        </h3>
+
+                        <p class="dataset-card__description">
+                            Data centers, cooling systems,
+                            backup generation, digital power supply,
+                            and electricity-demand infrastructure assets.
+                        </p>
+
+                        <div class="dataset-card__footer">
+                            <span>Institutional Access</span>
+                            <span>↗</span>
+                        </div>
+
+                    </article>
+
                 </div>
 
-                <div class="footer-column">
-                    <h5>Legal</h5>
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
+            </div>
+
+            <!-- ========================================= -->
+            <!-- ACCESS -->
+            <!-- ========================================= -->
+
+            <div class="access-box">
+
+                <div>
+
+                    <div class="section-title">
+                        Institutional Access Only
+                    </div>
+
+                    <h3 class="access-box__title">
+                        Distributed selectively.
+                    </h3>
+
                 </div>
 
-                <div class="footer-column">
-                    <h5>Access</h5>
-                    <a href="#">Request Access</a>
-                    <a href="#">Sign In</a>
+                <a
+                    class="access-button"
+                    href="mailto:fcfventures@protonmail.com?subject=Institutional%20Inquiry"
+                >
+                    Contact Founder ↗
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ========================================= -->
+    <!-- FOOTER -->
+    <!-- ========================================= -->
+
+    <footer class="site-footer">
+
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+
+                    <img
+                        src="logo.png"
+                        alt="FCF Ventures Logo"
+                        draggable="false"
+                    />
+
+                    <div>
+
+                        <h4>
+                            Free Cash Flow Ventures, LLC
+                        </h4>
+
+                        <small>
+                            © 2026 Free Cash Flow Ventures, LLC.
+                            All rights reserved.
+                        </small>
+
+                    </div>
+
+                </div>
+
+                <div class="footer-links">
+
+                    <div class="footer-column">
+
+                        <h5>
+                            Company
+                        </h5>
+
+                        <a href="about.html">
+                            About
+                        </a>
+
+                        <a href="contact.html">
+                            Contact
+                        </a>
+
+                    </div>
+
+                    <div class="footer-column">
+
+                        <h5>
+                            Legal
+                        </h5>
+
+                        <a href="privacy-policy.html">
+                            Privacy Policy
+                        </a>
+
+                        <a href="terms-of-service.html">
+                            Terms of Service
+                        </a>
+
+                    </div>
+
                 </div>
 
             </div>
 
         </div>
 
-        <div class="footer-bottom">
-            © 2026 Free Cash Flow Ventures, LLC. All rights reserved.
-        </div>
+    </footer>
 
-    </div>
-</footer>
+    <!-- ========================================= -->
+    <!-- SCRIPT -->
+    <!-- ========================================= -->
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // =========================================
+            // TRUE INFINITE DATASET SCROLL
+            // =========================================
+
+            const scrollWrapper = document.getElementById('datasetScroll');
+            const datasetGrid = document.getElementById('datasetGrid');
+
+            if (!scrollWrapper || !datasetGrid) return;
+
+            const originalCards = Array.from(datasetGrid.children);
+            const originalCardCount = originalCards.length;
+
+            if (!originalCardCount) return;
+
+            // -----------------------------------------
+            // CLONE SETS
+            // Final structure:
+            // [clone set] [original set] [clone set]
+            // -----------------------------------------
+
+            const beforeClones = originalCards.map(card => {
+                const clone = card.cloneNode(true);
+                clone.setAttribute('aria-hidden', 'true');
+                return clone;
+            });
+
+            const afterClones = originalCards.map(card => {
+                const clone = card.cloneNode(true);
+                clone.setAttribute('aria-hidden', 'true');
+                return clone;
+            });
+
+            datasetGrid.prepend(...beforeClones);
+            datasetGrid.append(...afterClones);
+
+            // -----------------------------------------
+            // WIDTH CALCULATION
+            // -----------------------------------------
+
+            const getGap = () => {
+                const gridStyle = window.getComputedStyle(datasetGrid);
+                return parseFloat(gridStyle.columnGap || gridStyle.gap) || 0;
+            };
+
+            const getSetWidth = () => {
+                const gap = getGap();
+                let width = 0;
+
+                for (
+                    let i = originalCardCount;
+                    i < originalCardCount * 2;
+                    i++
+                ) {
+                    width += datasetGrid.children[i].offsetWidth;
+                }
+
+                width += gap * (originalCardCount - 1);
+
+                return width;
+            };
+
+            let setWidth = getSetWidth();
+
+            // Start in the real middle set
+            scrollWrapper.scrollLeft = setWidth;
+
+            // -----------------------------------------
+            // POSITION NORMALIZATION
+            // -----------------------------------------
+
+            const normalizeScroll = () => {
+
+                if (scrollWrapper.scrollLeft <= 0) {
+                    scrollWrapper.scrollLeft += setWidth;
+                }
+
+                if (scrollWrapper.scrollLeft >= setWidth * 2) {
+                    scrollWrapper.scrollLeft -= setWidth;
+                }
+
+            };
+
+            scrollWrapper.addEventListener('scroll', normalizeScroll, {
+                passive: true
+            });
+
+            // -----------------------------------------
+            // POINTER DRAG SUPPORT
+            // Native touch swipe still works on mobile.
+            // This adds desktop mouse drag.
+            // -----------------------------------------
+
+            let isDragging = false;
+            let startX = 0;
+            let startScrollLeft = 0;
+
+            scrollWrapper.addEventListener('pointerdown', event => {
+
+                isDragging = true;
+                startX = event.clientX;
+                startScrollLeft = scrollWrapper.scrollLeft;
+
+                scrollWrapper.classList.add('is-dragging');
+                scrollWrapper.setPointerCapture(event.pointerId);
+
+            });
+
+            scrollWrapper.addEventListener('pointermove', event => {
+
+                if (!isDragging) return;
+
+                const deltaX = event.clientX - startX;
+                scrollWrapper.scrollLeft = startScrollLeft - deltaX;
+
+            });
+
+            const stopDragging = event => {
+
+                if (!isDragging) return;
+
+                isDragging = false;
+                scrollWrapper.classList.remove('is-dragging');
+
+                if (event.pointerId) {
+                    try {
+                        scrollWrapper.releasePointerCapture(event.pointerId);
+                    } catch (error) {
+                        // Ignore if pointer capture was already released.
+                    }
+                }
+
+            };
+
+            scrollWrapper.addEventListener('pointerup', stopDragging);
+            scrollWrapper.addEventListener('pointercancel', stopDragging);
+            scrollWrapper.addEventListener('mouseleave', stopDragging);
+
+            // -----------------------------------------
+            // RESIZE RECALCULATION
+            // -----------------------------------------
+
+            let resizeTimer;
+
+            window.addEventListener('resize', () => {
+
+                clearTimeout(resizeTimer);
+
+                resizeTimer = setTimeout(() => {
+                    setWidth = getSetWidth();
+                    scrollWrapper.scrollLeft = setWidth;
+                }, 150);
+
+            });
+
+        });
+
+    </script>
 
 </body>
+
 </html>
