@@ -243,6 +243,43 @@
             padding-bottom: 20px;
         }
 
+        .dataset-block {
+            margin-top: 0;
+        }
+
+        .dataset-block + .dataset-block {
+            margin-top: 58px;
+        }
+
+        .dataset-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 24px;
+
+            margin-bottom: 18px;
+        }
+
+        .dataset-heading__copy {
+            max-width: 720px;
+        }
+
+        .dataset-heading__title {
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: -0.04em;
+            line-height: 1.15;
+        }
+
+        .dataset-heading__description {
+            margin-top: 12px;
+
+            font-size: 13px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            max-width: 760px;
+        }
+
         .dataset-scroll {
             overflow-x: auto;
             overflow-y: hidden;
@@ -366,55 +403,79 @@
         }
 
         /* =========================================
-           ACCESS
+           DATASET REQUESTS & ACQUISITION
         ========================================= */
 
-        .access-box {
+        .request-block {
             margin-top: 70px;
             padding-top: 40px;
-
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 30px;
 
             border-top: 1px solid var(--border-light);
         }
 
-        .access-box__title {
-            font-size: 28px;
-            font-weight: 600;
-            letter-spacing: -0.04em;
+        .request-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
         }
 
-        .access-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
+        .request-card {
+            min-height: 340px;
 
-            padding: 18px 26px;
+            padding: 22px;
 
-            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
 
-            background: var(--black);
-            color: var(--white);
+            border: 1px solid var(--border-medium);
+            border-radius: var(--radius-medium);
 
-            text-decoration: none;
-
-            font-size: 11px;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-
-            white-space: nowrap;
+            background: var(--card-background);
 
             transition:
-                opacity var(--transition-fast),
+                background var(--transition-fast),
+                border-color var(--transition-fast),
                 transform var(--transition-fast);
         }
 
-        .access-button:hover {
-            opacity: 0.92;
-            transform: translateY(-1px);
+        .request-card:hover {
+            border-color: var(--border-strong);
+            background: var(--card-background-hover);
+            transform: translateY(-2px);
+        }
+
+        .request-card__title {
+            margin-top: 12px;
+
+            font-size: 28px;
+            font-weight: 600;
+            line-height: 1.12;
+            letter-spacing: -0.04em;
+        }
+
+        .request-card__description {
+            margin-top: 16px;
+
+            font-size: 13px;
+            line-height: 1.9;
+            color: var(--text-muted);
+        }
+
+        .request-card__link {
+            color: var(--black);
+            text-decoration: none;
+
+            font-size: 10px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+
+            opacity: 0.74;
+            transition: opacity var(--transition-fast);
+        }
+
+        .request-card__link:hover {
+            opacity: 1;
         }
 
         /* =========================================
@@ -524,15 +585,29 @@
                 font-size: 15px;
             }
 
+            .dataset-heading {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .dataset-heading__title {
+                font-size: 24px;
+            }
+
             .dataset-card {
                 width: 300px;
             }
 
-            .access-box {
-                flex-direction: column;
-                align-items: flex-start;
+            .request-grid {
+                grid-template-columns: 1fr;
+            }
 
-                gap: 14px;
+            .request-card {
+                min-height: auto;
+            }
+
+            .request-card__title {
+                font-size: 24px;
             }
 
             .footer-grid {
@@ -682,199 +757,465 @@
             id="datasets"
         >
 
-            <div class="section-title">
-                Institutional Dataset Access
-            </div>
+            <!-- ========================================= -->
+            <!-- DATASET ROW 1 -->
+            <!-- ========================================= -->
 
-            <div
-                class="dataset-scroll"
-                id="datasetScroll"
-                aria-label="Scrollable dataset cards"
-            >
+            <div class="dataset-block">
 
-                <div
-                    class="dataset-grid"
-                    id="datasetGrid"
-                >
-
-                    <article class="dataset-card">
-
-                        <div class="dataset-card__image"></div>
-
-                        <div class="dataset-card__category">
-                            Generation
-                        </div>
-
-                        <h3 class="dataset-card__title">
-                            Power Generation
-                        </h3>
-
-                        <p class="dataset-card__description">
-                            Core producing assets across solar,
-                            wind, hydro, gas, nuclear, and
-                            utility-scale generation systems.
-                        </p>
-
-                        <div class="dataset-card__footer">
-                            <span>Institutional Access</span>
-                            <span>↗</span>
-                        </div>
-
-                    </article>
-
-                    <article class="dataset-card">
-
-                        <div class="dataset-card__image"></div>
-
-                        <div class="dataset-card__category">
-                            Grid
-                        </div>
-
-                        <h3 class="dataset-card__title">
-                            Transmission / Grid
-                        </h3>
-
-                        <p class="dataset-card__description">
-                            Regulated network infrastructure
-                            including TSOs, DSOs, substations,
-                            interconnectors, and transmission systems.
-                        </p>
-
-                        <div class="dataset-card__footer">
-                            <span>Institutional Access</span>
-                            <span>↗</span>
-                        </div>
-
-                    </article>
-
-                    <article class="dataset-card">
-
-                        <div class="dataset-card__image"></div>
-
-                        <div class="dataset-card__category">
-                            Storage
-                        </div>
-
-                        <h3 class="dataset-card__title">
-                            Storage & Flexibility
-                        </h3>
-
-                        <p class="dataset-card__description">
-                            Balancing and reliability infrastructure
-                            including BESS, pumped hydro,
-                            ancillary services, and flexibility assets.
-                        </p>
-
-                        <div class="dataset-card__footer">
-                            <span>Institutional Access</span>
-                            <span>↗</span>
-                        </div>
-
-                    </article>
-
-                    <article class="dataset-card">
-
-                        <div class="dataset-card__image"></div>
-
-                        <div class="dataset-card__category">
-                            Midstream
-                        </div>
-
-                        <h3 class="dataset-card__title">
-                            Gas & Midstream
-                        </h3>
-
-                        <p class="dataset-card__description">
-                            LNG terminals, pipelines, storage systems,
-                            compressors, and strategic gas
-                            infrastructure networks.
-                        </p>
-
-                        <div class="dataset-card__footer">
-                            <span>Institutional Access</span>
-                            <span>↗</span>
-                        </div>
-
-                    </article>
-
-                    <article class="dataset-card">
-
-                        <div class="dataset-card__image"></div>
-
-                        <div class="dataset-card__category">
-                            Transition
-                        </div>
-
-                        <h3 class="dataset-card__title">
-                            Energy Transition
-                        </h3>
-
-                        <p class="dataset-card__description">
-                            Hydrogen, CCS, renewable fuels,
-                            industrial decarbonization, and
-                            long-duration transition infrastructure systems.
-                        </p>
-
-                        <div class="dataset-card__footer">
-                            <span>Institutional Access</span>
-                            <span>↗</span>
-                        </div>
-
-                    </article>
-
-                    <article class="dataset-card">
-
-                        <div class="dataset-card__image"></div>
-
-                        <div class="dataset-card__category">
-                            Digital
-                        </div>
-
-                        <h3 class="dataset-card__title">
-                            Digital Infrastructure
-                        </h3>
-
-                        <p class="dataset-card__description">
-                            Data centers, cooling systems,
-                            backup generation, digital power supply,
-                            and electricity-demand infrastructure assets.
-                        </p>
-
-                        <div class="dataset-card__footer">
-                            <span>Institutional Access</span>
-                            <span>↗</span>
-                        </div>
-
-                    </article>
-
+                <div class="section-title">
+                    Institutional Dataset Access
                 </div>
 
-            </div>
+                <div class="dataset-heading">
 
-            <!-- ========================================= -->
-            <!-- ACCESS -->
-            <!-- ========================================= -->
+                    <div class="dataset-heading__copy">
 
-            <div class="access-box">
-
-                <div>
-
-                    <div class="section-title">
-                        Institutional Access Only
+                        <h2 class="dataset-heading__title">
+                            Energy Infrastructure Datasets.
+                        </h2>
                     </div>
 
-                    <h3 class="access-box__title">
-                        Distributed selectively.
-                    </h3>
+                </div>
+
+                <div
+                    class="dataset-scroll"
+                    aria-label="Scrollable energy infrastructure dataset cards"
+                >
+
+                    <div class="dataset-grid">
+
+                        <article class="dataset-card">
+
+                            <div class="dataset-card__image"></div>
+
+                            <div class="dataset-card__category">
+                                Generation
+                            </div>
+
+                            <h3 class="dataset-card__title">
+                                Power Generation
+                            </h3>
+
+                            <p class="dataset-card__description">
+                                Core producing assets across solar,
+                                wind, hydro, gas, nuclear, and
+                                utility-scale generation systems.
+                            </p>
+
+                            <div class="dataset-card__footer">
+                                <span>Institutional Access</span>
+                                <span>↗</span>
+                            </div>
+
+                        </article>
+
+                        <article class="dataset-card">
+
+                            <div class="dataset-card__image"></div>
+
+                            <div class="dataset-card__category">
+                                Grid
+                            </div>
+
+                            <h3 class="dataset-card__title">
+                                Transmission / Grid
+                            </h3>
+
+                            <p class="dataset-card__description">
+                                Regulated network infrastructure
+                                including TSOs, DSOs, substations,
+                                interconnectors, and transmission systems.
+                            </p>
+
+                            <div class="dataset-card__footer">
+                                <span>Institutional Access</span>
+                                <span>↗</span>
+                            </div>
+
+                        </article>
+
+                        <article class="dataset-card">
+
+                            <div class="dataset-card__image"></div>
+
+                            <div class="dataset-card__category">
+                                Storage
+                            </div>
+
+                            <h3 class="dataset-card__title">
+                                Storage & Flexibility
+                            </h3>
+
+                            <p class="dataset-card__description">
+                                Balancing and reliability infrastructure
+                                including BESS, pumped hydro,
+                                ancillary services, and flexibility assets.
+                            </p>
+
+                            <div class="dataset-card__footer">
+                                <span>Institutional Access</span>
+                                <span>↗</span>
+                            </div>
+
+                        </article>
+
+                        <article class="dataset-card">
+
+                            <div class="dataset-card__image"></div>
+
+                            <div class="dataset-card__category">
+                                Midstream
+                            </div>
+
+                            <h3 class="dataset-card__title">
+                                Gas & Midstream
+                            </h3>
+
+                            <p class="dataset-card__description">
+                                LNG terminals, pipelines, storage systems,
+                                compressors, and strategic gas
+                                infrastructure networks.
+                            </p>
+
+                            <div class="dataset-card__footer">
+                                <span>Institutional Access</span>
+                                <span>↗</span>
+                            </div>
+
+                        </article>
+
+                        <article class="dataset-card">
+
+                            <div class="dataset-card__image"></div>
+
+                            <div class="dataset-card__category">
+                                Transition
+                            </div>
+
+                            <h3 class="dataset-card__title">
+                                Energy Transition
+                            </h3>
+
+                            <p class="dataset-card__description">
+                                Hydrogen, CCS, renewable fuels,
+                                industrial decarbonization, and
+                                long-duration transition infrastructure systems.
+                            </p>
+
+                            <div class="dataset-card__footer">
+                                <span>Institutional Access</span>
+                                <span>↗</span>
+                            </div>
+
+                        </article>
+
+                        <article class="dataset-card">
+
+                            <div class="dataset-card__image"></div>
+
+                            <div class="dataset-card__category">
+                                Digital
+                            </div>
+
+                            <h3 class="dataset-card__title">
+                                Digital Infrastructure
+                            </h3>
+
+                            <p class="dataset-card__description">
+                                Data centers, cooling systems,
+                                backup generation, digital power supply,
+                                and electricity-demand infrastructure assets.
+                            </p>
+
+                            <div class="dataset-card__footer">
+                                <span>Institutional Access</span>
+                                <span>↗</span>
+                            </div>
+
+                        </article>
+
+                    </div>
 
                 </div>
 
-                <a
-                    class="access-button"
-                    href="mailto:fcfventures@protonmail.com?subject=Institutional%20Inquiry"
+            </div>
+
+            <!-- ========================================= -->
+            <!-- DATASET ROW 2 -->
+            <!-- ========================================= -->
+
+            <div class="dataset-block">
+
+                <div class="section-title">
+                    Additional Dataset Verticals
+                </div>
+
+                <div class="dataset-heading">
+
+                    <div class="dataset-heading__copy">
+
+                        <h2 class="dataset-heading__title">
+                            Strategic Industry Datasets.
+                        </h2>
+                    </div>
+
+                </div>
+
+                <div
+                    class="dataset-scroll"
+                    aria-label="Scrollable strategic industry dataset cards"
                 >
-                    Contact Founder ↗
-                </a>
+
+                    <div class="dataset-grid">
+
+                        <article class="dataset-card">
+
+                            <div class="dataset-card__image"></div>
+
+                            <div class="dataset-card__category">
+                                Space
+                            </div>
+
+                            <h3 class="dataset-card__title">
+                                Space Infrastructure
+                            </h3>
+
+                            <p class="dataset-card__description">
+                                Satellite operators, launch systems,
+                                orbital infrastructure, ground stations,
+                                and sovereign space-industrial ecosystems.
+                            </p>
+
+                            <div class="dataset-card__footer">
+                                <span>Dataset Space</span>
+                                <span>↗</span>
+                            </div>
+
+                        </article>
+
+                        <article class="dataset-card">
+
+                            <div class="dataset-card__image"></div>
+
+                            <div class="dataset-card__category">
+                                Robotics
+                            </div>
+
+                            <h3 class="dataset-card__title">
+                                Robotics Systems
+                            </h3>
+
+                            <p class="dataset-card__description">
+                                Industrial robotics, humanoid systems,
+                                automation platforms, component suppliers,
+                                integrators, and deployment environments.
+                            </p>
+
+                            <div class="dataset-card__footer">
+                                <span>Dataset Robotics</span>
+                                <span>↗</span>
+                            </div>
+
+                        </article>
+
+                        <article class="dataset-card">
+
+                            <div class="dataset-card__image"></div>
+
+                            <div class="dataset-card__category">
+                                Infrastructure
+                            </div>
+
+                            <h3 class="dataset-card__title">
+                                Infrastructure Platforms
+                            </h3>
+
+                            <p class="dataset-card__description">
+                                Sponsors, developers, EPCs, concession assets,
+                                project pipelines, ownership structures,
+                                and institutional infrastructure platforms.
+                            </p>
+
+                            <div class="dataset-card__footer">
+                                <span>Dataset Infrastructure</span>
+                                <span>↗</span>
+                            </div>
+
+                        </article>
+
+                        <article class="dataset-card">
+
+                            <div class="dataset-card__image"></div>
+
+                            <div class="dataset-card__category">
+                                Sovereign
+                            </div>
+
+                            <h3 class="dataset-card__title">
+                                Sovereign Capital
+                            </h3>
+
+                            <p class="dataset-card__description">
+                                Sovereign wealth funds, strategic investment
+                                vehicles, national platforms, allocation themes,
+                                and cross-border capital flows.
+                            </p>
+
+                            <div class="dataset-card__footer">
+                                <span>Dataset Sovereign</span>
+                                <span>↗</span>
+                            </div>
+
+                        </article>
+
+                        <article class="dataset-card">
+
+                            <div class="dataset-card__image"></div>
+
+                            <div class="dataset-card__category">
+                                Healthcare
+                            </div>
+
+                            <h3 class="dataset-card__title">
+                                Healthcare Assets
+                            </h3>
+
+                            <p class="dataset-card__description">
+                                Hospital infrastructure, specialty treatment
+                                assets, healthcare operators, medical platforms,
+                                and institutional healthcare ecosystems.
+                            </p>
+
+                            <div class="dataset-card__footer">
+                                <span>Dataset Healthcare</span>
+                                <span>↗</span>
+                            </div>
+
+                        </article>
+
+                        <article class="dataset-card">
+
+                            <div class="dataset-card__image"></div>
+
+                            <div class="dataset-card__category">
+                                Logistics
+                            </div>
+
+                            <h3 class="dataset-card__title">
+                                Logistics Networks
+                            </h3>
+
+                            <p class="dataset-card__description">
+                                Ports, warehouses, airports, cold chains,
+                                freight corridors, intermodal platforms,
+                                and critical supply-chain infrastructure.
+                            </p>
+
+                            <div class="dataset-card__footer">
+                                <span>Dataset Logistics</span>
+                                <span>↗</span>
+                            </div>
+
+                        </article>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ========================================= -->
+            <!-- DATASET REQUESTS & ACQUISITION -->
+            <!-- ========================================= -->
+
+            <div class="request-block">
+
+                <div class="section-title">
+                    Dataset Requests & Acquisition
+                </div>
+
+                <div class="dataset-heading">
+
+                    <div class="dataset-heading__copy">
+
+                        <h2 class="dataset-heading__title">
+                            Buy or Sell Institutional Datasets.
+                        </h2>
+
+                    </div>
+
+                </div>
+
+                <div class="request-grid">
+
+                    <article class="request-card">
+
+                        <div>
+
+                            <div class="dataset-card__category">
+                                Buy-Side Request
+                            </div>
+
+                            <h3 class="request-card__title">
+                                Buy Dataset — Request Offer.
+                            </h3>
+
+                            <p class="request-card__description">
+                                Request a tailored institutional dataset built around
+                                a defined sector, region, ownership universe, project
+                                pipeline, company group, or intelligence requirement.
+                            </p>
+
+                        </div>
+
+                        <div class="dataset-card__footer">
+
+                            <a
+                                class="request-card__link"
+                                href="mailto:fcfventures@protonmail.com?subject=Buy%20Dataset%20-%20Request%20Offer&body=I%20would%20like%20to%20buy%20a%20made-to-measure%20LLM-optimized%20dataset.%20Please%20make%20me%20an%20offer."
+                            >
+                                Founder Request ↗
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                    <article class="request-card">
+
+                        <div>
+
+                            <div class="dataset-card__category">
+                                Sell-Side Submission
+                            </div>
+
+                            <h3 class="request-card__title">
+                                Sell Data — Request Offer.
+                            </h3>
+
+                            <p class="request-card__description">
+                                Submit a proprietary dataset, structured intelligence
+                                package, research archive, sector database, or ownership
+                                universe for acquisition review.
+                            </p>
+
+                        </div>
+
+                        <div class="dataset-card__footer">
+
+                            <a
+                                class="request-card__link"
+                                href="mailto:fcfventures@protonmail.com?subject=Sell%20Data%20-%20Request%20Offer&body=I%20would%20like%20to%20sell%20a%20dataset%20to%20Free%20Cash%20Flow%20Ventures.%20Please%20review%20and%20make%20me%20an%20offer."
+                            >
+                                Submit Dataset ↗
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                </div>
 
             </div>
 
@@ -966,156 +1307,136 @@
         document.addEventListener('DOMContentLoaded', () => {
 
             // =========================================
-            // TRUE INFINITE DATASET SCROLL
+            // MULTI-CAROUSEL INFINITE DATASET SCROLL
             // =========================================
 
-            const scrollWrapper = document.getElementById('datasetScroll');
-            const datasetGrid = document.getElementById('datasetGrid');
+            const carousels = document.querySelectorAll('.dataset-scroll');
 
-            if (!scrollWrapper || !datasetGrid) return;
+            carousels.forEach(scrollWrapper => {
 
-            const originalCards = Array.from(datasetGrid.children);
-            const originalCardCount = originalCards.length;
+                const datasetGrid = scrollWrapper.querySelector('.dataset-grid');
 
-            if (!originalCardCount) return;
+                if (!datasetGrid) return;
 
-            // -----------------------------------------
-            // CLONE SETS
-            // Final structure:
-            // [clone set] [original set] [clone set]
-            // -----------------------------------------
+                const originalCards = Array.from(datasetGrid.children);
+                const originalCardCount = originalCards.length;
 
-            const beforeClones = originalCards.map(card => {
-                const clone = card.cloneNode(true);
-                clone.setAttribute('aria-hidden', 'true');
-                return clone;
-            });
+                if (!originalCardCount) return;
 
-            const afterClones = originalCards.map(card => {
-                const clone = card.cloneNode(true);
-                clone.setAttribute('aria-hidden', 'true');
-                return clone;
-            });
+                const beforeClones = originalCards.map(card => {
+                    const clone = card.cloneNode(true);
+                    clone.setAttribute('aria-hidden', 'true');
+                    return clone;
+                });
 
-            datasetGrid.prepend(...beforeClones);
-            datasetGrid.append(...afterClones);
+                const afterClones = originalCards.map(card => {
+                    const clone = card.cloneNode(true);
+                    clone.setAttribute('aria-hidden', 'true');
+                    return clone;
+                });
 
-            // -----------------------------------------
-            // WIDTH CALCULATION
-            // -----------------------------------------
+                datasetGrid.prepend(...beforeClones);
+                datasetGrid.append(...afterClones);
 
-            const getGap = () => {
-                const gridStyle = window.getComputedStyle(datasetGrid);
-                return parseFloat(gridStyle.columnGap || gridStyle.gap) || 0;
-            };
+                const getGap = () => {
+                    const gridStyle = window.getComputedStyle(datasetGrid);
+                    return parseFloat(gridStyle.columnGap || gridStyle.gap) || 0;
+                };
 
-            const getSetWidth = () => {
-                const gap = getGap();
-                let width = 0;
+                const getSetWidth = () => {
+                    const gap = getGap();
+                    let width = 0;
 
-                for (
-                    let i = originalCardCount;
-                    i < originalCardCount * 2;
-                    i++
-                ) {
-                    width += datasetGrid.children[i].offsetWidth;
-                }
-
-                width += gap * (originalCardCount - 1);
-
-                return width;
-            };
-
-            let setWidth = getSetWidth();
-
-            // Start in the real middle set
-            scrollWrapper.scrollLeft = setWidth;
-
-            // -----------------------------------------
-            // POSITION NORMALIZATION
-            // -----------------------------------------
-
-            const normalizeScroll = () => {
-
-                if (scrollWrapper.scrollLeft <= 0) {
-                    scrollWrapper.scrollLeft += setWidth;
-                }
-
-                if (scrollWrapper.scrollLeft >= setWidth * 2) {
-                    scrollWrapper.scrollLeft -= setWidth;
-                }
-
-            };
-
-            scrollWrapper.addEventListener('scroll', normalizeScroll, {
-                passive: true
-            });
-
-            // -----------------------------------------
-            // POINTER DRAG SUPPORT
-            // Native touch swipe still works on mobile.
-            // This adds desktop mouse drag.
-            // -----------------------------------------
-
-            let isDragging = false;
-            let startX = 0;
-            let startScrollLeft = 0;
-
-            scrollWrapper.addEventListener('pointerdown', event => {
-
-                isDragging = true;
-                startX = event.clientX;
-                startScrollLeft = scrollWrapper.scrollLeft;
-
-                scrollWrapper.classList.add('is-dragging');
-                scrollWrapper.setPointerCapture(event.pointerId);
-
-            });
-
-            scrollWrapper.addEventListener('pointermove', event => {
-
-                if (!isDragging) return;
-
-                const deltaX = event.clientX - startX;
-                scrollWrapper.scrollLeft = startScrollLeft - deltaX;
-
-            });
-
-            const stopDragging = event => {
-
-                if (!isDragging) return;
-
-                isDragging = false;
-                scrollWrapper.classList.remove('is-dragging');
-
-                if (event.pointerId) {
-                    try {
-                        scrollWrapper.releasePointerCapture(event.pointerId);
-                    } catch (error) {
-                        // Ignore if pointer capture was already released.
+                    for (
+                        let i = originalCardCount;
+                        i < originalCardCount * 2;
+                        i++
+                    ) {
+                        width += datasetGrid.children[i].offsetWidth;
                     }
-                }
 
-            };
+                    width += gap * (originalCardCount - 1);
 
-            scrollWrapper.addEventListener('pointerup', stopDragging);
-            scrollWrapper.addEventListener('pointercancel', stopDragging);
-            scrollWrapper.addEventListener('mouseleave', stopDragging);
+                    return width;
+                };
 
-            // -----------------------------------------
-            // RESIZE RECALCULATION
-            // -----------------------------------------
+                let setWidth = getSetWidth();
 
-            let resizeTimer;
+                scrollWrapper.scrollLeft = setWidth;
 
-            window.addEventListener('resize', () => {
+                const normalizeScroll = () => {
 
-                clearTimeout(resizeTimer);
+                    if (scrollWrapper.scrollLeft <= 0) {
+                        scrollWrapper.scrollLeft += setWidth;
+                    }
 
-                resizeTimer = setTimeout(() => {
-                    setWidth = getSetWidth();
-                    scrollWrapper.scrollLeft = setWidth;
-                }, 150);
+                    if (scrollWrapper.scrollLeft >= setWidth * 2) {
+                        scrollWrapper.scrollLeft -= setWidth;
+                    }
+
+                };
+
+                scrollWrapper.addEventListener('scroll', normalizeScroll, {
+                    passive: true
+                });
+
+                let isDragging = false;
+                let startX = 0;
+                let startScrollLeft = 0;
+
+                scrollWrapper.addEventListener('pointerdown', event => {
+
+                    isDragging = true;
+                    startX = event.clientX;
+                    startScrollLeft = scrollWrapper.scrollLeft;
+
+                    scrollWrapper.classList.add('is-dragging');
+                    scrollWrapper.setPointerCapture(event.pointerId);
+
+                });
+
+                scrollWrapper.addEventListener('pointermove', event => {
+
+                    if (!isDragging) return;
+
+                    const deltaX = event.clientX - startX;
+                    scrollWrapper.scrollLeft = startScrollLeft - deltaX;
+
+                });
+
+                const stopDragging = event => {
+
+                    if (!isDragging) return;
+
+                    isDragging = false;
+                    scrollWrapper.classList.remove('is-dragging');
+
+                    if (event.pointerId) {
+                        try {
+                            scrollWrapper.releasePointerCapture(event.pointerId);
+                        } catch (error) {
+                            // Ignore if pointer capture was already released.
+                        }
+                    }
+
+                };
+
+                scrollWrapper.addEventListener('pointerup', stopDragging);
+                scrollWrapper.addEventListener('pointercancel', stopDragging);
+                scrollWrapper.addEventListener('mouseleave', stopDragging);
+
+                let resizeTimer;
+
+                window.addEventListener('resize', () => {
+
+                    clearTimeout(resizeTimer);
+
+                    resizeTimer = setTimeout(() => {
+                        setWidth = getSetWidth();
+                        scrollWrapper.scrollLeft = setWidth;
+                    }, 150);
+
+                });
 
             });
 
