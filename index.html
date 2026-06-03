@@ -3,178 +3,377 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free Cash Flow Ventures, LLC</title>
-<link rel="icon" href="favicon.ico" sizes="any">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<title>FCF Ventures — LLM &amp; Agent Data</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#e6e6e6;
+  --surface:#eaeaea;
+  --ink:#0a0a0a;
+  --ink2:rgba(10,10,10,.62);
+  --ink3:rgba(10,10,10,.40);
+  --hair:rgba(10,10,10,.08);
+  --hair2:rgba(10,10,10,.14);
+  --bronze:#7a5b32;--silver:#565b61;--gold:#8a6d1f;--burn:#7c2d12;--ok:#1f5f43;
+  --r:4px;
+  --ease:cubic-bezier(.4,0,.2,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:'IBM Plex Mono',monospace;font-weight:400;
+  -webkit-font-smoothing:antialiased;line-height:1.55;
+  letter-spacing:-.01em;
+}
+.wrap{width:90%;max-width:1080px;margin:0 auto}
+.topbar{height:6px;background:var(--ink)}
+
+/* nav — quiet */
+header{position:sticky;top:0;z-index:40;background:rgba(230,230,230,.82);backdrop-filter:saturate(160%) blur(14px);border-bottom:1px solid var(--hair)}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
+.brand{display:flex;align-items:baseline;gap:11px;cursor:pointer}
+.brand .mark{font-size:14px;font-weight:500;letter-spacing:-.01em}
+.brand .tag{font-size:9px;letter-spacing:.22em;text-transform:uppercase;opacity:.4}
+.nav-links{display:flex;align-items:center;gap:30px}
+.nav-links a,.nav-links button{font-family:inherit;font-size:12px;font-weight:400;letter-spacing:.01em;color:var(--ink);text-decoration:none;background:none;border:none;cursor:pointer;opacity:.55;padding:0;transition:opacity .25s var(--ease)}
+.nav-links a:hover,.nav-links button:hover{opacity:1}
+
+/* buttons — pill, restrained */
+.btn{font-family:inherit;font-weight:400;cursor:pointer;border:1px solid var(--ink);background:var(--ink);color:var(--bg);font-size:12px;letter-spacing:.01em;padding:11px 22px;border-radius:100px;transition:all .25s var(--ease)}
+.btn:hover{transform:translateY(-1px);opacity:.88}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--hair2)}
+.btn.ghost:hover{border-color:var(--ink);transform:translateY(-1px)}
+.btn.sm{padding:8px 16px;font-size:11px}
+
+/* hero — spacious, centered calm */
+.hero{padding:140px 0 120px;text-align:center}
+.hero small{font-size:11px;letter-spacing:.24em;text-transform:uppercase;opacity:.4;font-weight:400}
+.hero h1{font-size:64px;line-height:1.02;letter-spacing:-.055em;font-weight:500;margin:26px auto 0;max-width:780px}
+.hero .sub{font-size:15px;color:var(--ink2);margin:26px auto 0;max-width:440px;line-height:1.7}
+.hero-cta{display:flex;gap:12px;margin-top:40px;justify-content:center;flex-wrap:wrap}
+.hero-stats{display:flex;gap:0;margin-top:96px;justify-content:center;border-top:1px solid var(--hair);padding-top:40px}
+.hero-stats .s{padding:0 44px;border-right:1px solid var(--hair)}
+.hero-stats .s:last-child{border-right:none}
+.hero-stats .n{font-size:30px;font-weight:300;letter-spacing:-.04em}
+.hero-stats .l{font-size:10px;letter-spacing:.16em;text-transform:uppercase;opacity:.4;margin-top:8px}
+
+/* tiers — air, no boxes */
+.tiers{padding:110px 0;text-align:center}
+.tiers .ey{font-size:11px;letter-spacing:.22em;text-transform:uppercase;opacity:.4;margin-bottom:54px}
+.tiers-row{display:grid;grid-template-columns:repeat(3,1fr);gap:64px}
+.tg .badge{font-size:10px;letter-spacing:.18em;text-transform:uppercase}
+.tg.bronze .badge{color:var(--bronze)}.tg.silver .badge{color:var(--silver)}.tg.gold .badge{color:var(--gold)}
+.tg h3{font-size:19px;font-weight:500;letter-spacing:-.03em;margin:16px 0 10px}
+.tg p{font-size:12px;color:var(--ink2);line-height:1.8}
+
+/* market */
+.market{padding:40px 0 130px}
+.market-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:44px;flex-wrap:wrap;gap:20px}
+.market-head .ey{font-size:11px;letter-spacing:.22em;text-transform:uppercase;opacity:.4}
+.market-head h2{font-size:34px;font-weight:500;letter-spacing:-.045em;margin-top:12px}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap}
+.toolbar input,.toolbar select{font-family:inherit;font-size:12px;background:var(--surface);border:1px solid var(--hair2);color:var(--ink);padding:11px 14px;outline:none;border-radius:100px;transition:border-color .25s var(--ease)}
+.toolbar input{min-width:200px}
+.toolbar input:focus,.toolbar select:focus{border-color:var(--ink)}
+.toolbar select{-webkit-appearance:none;appearance:none;padding-right:30px;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><path d='M1 1l4 4 4-4' fill='none' stroke='%23000' stroke-opacity='.4' stroke-width='1.2'/></svg>");background-repeat:no-repeat;background-position:right 13px center}
+
+/* cards — soft, premium, no hard borders */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card{background:var(--surface);border:1px solid transparent;border-radius:14px;padding:26px 26px 22px;display:flex;flex-direction:column;cursor:pointer;transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.card:hover{transform:translateY(-4px);box-shadow:0 18px 40px -24px rgba(0,0,0,.4)}
+.card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.cat{font-size:10px;letter-spacing:.14em;text-transform:uppercase;opacity:.4}
+.tierpill{font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;border-radius:100px;background:rgba(10,10,10,.05)}
+.tierpill.bronze{color:var(--bronze)}.tierpill.silver{color:var(--silver)}.tierpill.gold{color:var(--gold)}
+.card h3{font-size:16px;font-weight:500;line-height:1.35;letter-spacing:-.025em;margin-bottom:16px;flex:1}
+.card .meta{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:10px;opacity:.4;margin-bottom:18px}
+.seller-row{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--hair);padding-top:16px;margin-bottom:16px}
+.seller{display:flex;align-items:center;gap:9px;font-size:11px;opacity:.75}
+.seller .av{width:22px;height:22px;border-radius:100px;background:var(--ink);color:var(--bg);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:500}
+.score{display:flex;align-items:center;gap:6px;font-size:11px;opacity:.75}
+.score .dot{width:5px;height:5px;border-radius:50%}
+.score.s-elite .dot{background:var(--gold)}.score.s-trusted .dot{background:var(--ok)}.score.s-new .dot{background:var(--ink3)}
+.card-foot{display:flex;align-items:center;justify-content:space-between}
+.price{font-size:17px;font-weight:400;letter-spacing:-.02em}
+.price small{font-size:10px;opacity:.45;font-weight:300}
+.modeflag{font-size:9px;letter-spacing:.08em;text-transform:uppercase;opacity:.5}
+.modeflag.burn{color:var(--burn);opacity:1}
+.sold{opacity:.4}.sold .card{pointer-events:none}
+.burned-stamp{font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--burn)}
+
+footer{padding:60px 0;border-top:1px solid var(--hair)}
+.foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+.foot .links{display:flex;gap:26px}
+.foot a{font-size:12px;color:var(--ink);text-decoration:none;opacity:.5;transition:opacity .25s}
+.foot a:hover{opacity:1}
+.foot .copy{font-size:10px;opacity:.35;width:100%;margin-top:18px}
+
+/* modal — calm sheet */
+.overlay{position:fixed;inset:0;background:rgba(20,20,20,.42);backdrop-filter:blur(6px);display:none;align-items:flex-start;justify-content:center;z-index:100;overflow-y:auto;padding:48px 16px;opacity:0;transition:opacity .3s var(--ease)}
+.overlay.on{display:flex;opacity:1}
+.modal{background:var(--bg);border-radius:18px;width:100%;max-width:560px;margin:auto;overflow:hidden;box-shadow:0 40px 90px -30px rgba(0,0,0,.5);animation:rise .4s var(--ease)}
+@keyframes rise{from{transform:translateY(16px) scale(.98);opacity:0}to{transform:translateY(0) scale(1);opacity:1}}
+.modal-in{padding:36px 38px 34px}
+.modal-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px}
+.modal-head .small{font-size:10px;letter-spacing:.16em;text-transform:uppercase;opacity:.4}
+.modal-head h3{font-size:23px;font-weight:500;letter-spacing:-.035em;margin-top:9px;max-width:90%}
+.x{background:none;border:none;font-family:inherit;font-size:17px;cursor:pointer;opacity:.4;line-height:1;transition:opacity .2s}
+.x:hover{opacity:1}
+.mrow{display:flex;flex-wrap:wrap;gap:7px 16px;font-size:11px;opacity:.55;margin-bottom:22px;padding-bottom:22px;border-bottom:1px solid var(--hair)}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;opacity:.5;margin-bottom:8px}
+.field input,.field select,.field textarea{width:100%;font-family:inherit;font-size:13px;background:var(--surface);border:1px solid var(--hair2);color:var(--ink);padding:12px 14px;outline:none;border-radius:10px;transition:border-color .25s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--ink)}
+.field textarea{resize:vertical;min-height:72px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.sample{background:var(--surface);border-radius:10px;padding:16px;font-size:11px;line-height:1.75;white-space:pre-wrap;overflow:auto;margin-bottom:22px;max-height:180px;color:var(--ink2)}
+.licbox{border:1px solid var(--hair2);border-radius:12px;padding:15px;margin-bottom:11px;cursor:pointer;transition:border-color .25s,background .25s}
+.licbox:hover{border-color:var(--ink3)}
+.licbox.sel{border-color:var(--ink);background:var(--surface)}
+.licbox .lt{display:flex;justify-content:space-between;align-items:center;font-size:13px;margin-bottom:5px}
+.licbox .ld{font-size:11px;opacity:.6;line-height:1.6}
+.note{font-size:11px;line-height:1.75;color:var(--ink2);background:var(--surface);border-radius:10px;padding:13px 15px;margin-bottom:22px}
+.note.warn{color:var(--burn)}
+.modal-actions{display:flex;gap:11px;margin-top:24px}
+.modal-actions .btn{flex:1;text-align:center;padding:13px}
+.success{text-align:center;padding:26px 0}
+.success .big{font-size:30px;margin-bottom:16px;opacity:.85}
+.success p{font-size:13px;color:var(--ink2);line-height:1.8;max-width:380px;margin:0 auto}
+
+/* dashboard */
+.dash-tabs{display:flex;gap:8px;margin-bottom:34px}
+.dash-tabs button{font-family:inherit;font-size:12px;letter-spacing:.01em;background:transparent;border:1px solid var(--hair2);border-radius:100px;padding:9px 20px;cursor:pointer;opacity:.55;transition:all .25s var(--ease)}
+.dash-tabs button.on{opacity:1;background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:40px}
+.kpi{background:var(--surface);border-radius:14px;padding:24px}
+.kpi .n{font-size:28px;font-weight:300;letter-spacing:-.04em}
+.kpi .l{font-size:10px;letter-spacing:.14em;text-transform:uppercase;opacity:.45;margin-top:7px}
+.tbl{width:100%;border-collapse:collapse;font-size:12px}
+.tbl th{text-align:left;font-size:10px;letter-spacing:.12em;text-transform:uppercase;opacity:.4;padding:13px 15px;border-bottom:1px solid var(--hair2);font-weight:400}
+.tbl td{padding:15px;border-bottom:1px solid var(--hair)}
+.statuspill{font-size:10px;letter-spacing:.05em;opacity:.8}
+.statuspill.live{color:var(--ok)}.statuspill.burned{color:var(--burn)}
+.empty{text-align:center;padding:60px 0;font-size:12px;opacity:.45}
+.hidden{display:none!important}
+
+@media(max-width:880px){.grid,.kpis,.tiers-row{grid-template-columns:1fr 1fr;gap:22px}.hero h1{font-size:42px}.hero{padding:90px 0 80px}.tiers{padding:70px 0}}
+@media(max-width:560px){.grid,.kpis,.tiers-row,.row2{grid-template-columns:1fr}.nav-links a{display:none}.hero h1{font-size:32px}.hero-stats{flex-wrap:wrap}.hero-stats .s{padding:14px 24px}}
+</style>
 </head>
 <body>
+<div class="topbar"></div>
 
 <header>
-<div class="container nav">
-
-<div class="brand">
-<img src="logo.png" alt="FCF Ventures Logo">
-
-<div class="brand-text">
-<h1>Free Cash Flow Ventures, LLC</h1>
-<p>Delaware</p>
-</div>
-</div>
-
-<nav>
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="dashboard.html">Dashboard</a>
-<a href="legal.html">Legal</a>
-</nav>
-
-</div>
+  <div class="wrap nav">
+    <div class="brand" onclick="go('market')"><span class="mark">FCF Ventures</span><span class="tag">Data</span></div>
+    <div class="nav-links">
+      <a onclick="go('market')">Market</a>
+      <a onclick="go('dashboard')">Dashboard</a>
+      <a href="legal.html">Legal</a>
+      <button class="btn sm ghost" onclick="openList()">List</button>
+    </div>
+  </div>
 </header>
 
+<div id="view-market">
+  <section class="hero">
+    <div class="wrap">
+      <small>LLM &amp; agent data</small>
+      <h1>Buy data clean.<br>Sell data fast.</h1>
+      <p class="sub">An open marketplace for model-ready datasets. Sampled, scored, rights-cleared.</p>
+      <div class="hero-cta">
+        <button class="btn" onclick="scrollToMarket()">Browse</button>
+        <button class="btn ghost" onclick="openList()">Sell</button>
+      </div>
+      <div class="hero-stats">
+        <div class="s"><div class="n" id="st-sets">—</div><div class="l">Datasets</div></div>
+        <div class="s"><div class="n" id="st-sellers">—</div><div class="l">Sellers</div></div>
+        <div class="s"><div class="n">6.5B</div><div class="l">Tokens</div></div>
+      </div>
+    </div>
+  </section>
 
-<section class="hero container">
+  <section class="tiers">
+    <div class="wrap">
+      <div class="ey">Three tiers</div>
+      <div class="tiers-row">
+        <div class="tg bronze"><div class="badge">Bronze</div><h3>Raw</h3><p>Source-level, unmodified. Clean it your way.</p></div>
+        <div class="tg silver"><div class="badge">Silver</div><h3>Structured</h3><p>Entity-resolved, validated, normalized.</p></div>
+        <div class="tg gold"><div class="badge">Gold</div><h3>Data Product</h3><p>Modeled, versioned, API-ready, refreshed.</p></div>
+      </div>
+    </div>
+  </section>
 
-<div class="hero-left">
-
-<small>
-Premium Datasets. Institutional Intelligence.
-</small>
-
-<h2>
-Ultra Valuable Datasets for a Smarter Edge.
-</h2>
-
-<p>
-We curate and distribute highly specialized institutional datasets across infrastructure, sovereign finance, energy systems, capital markets, and strategic intelligence.
-</p>
-
-<a href="dashboard.html" class="hero-button">
-Request Access ↗
-</a>
-
-<div class="hero-note">
-Price upon request.
+  <section class="market" id="market">
+    <div class="wrap">
+      <div class="market-head">
+        <div><div class="ey">Browse</div><h2>Live datasets</h2></div>
+        <div class="toolbar">
+          <input id="q" type="text" placeholder="Search" oninput="render()">
+          <select id="f-tier" onchange="render()"><option value="">Tier</option><option>Bronze</option><option>Silver</option><option>Gold</option></select>
+          <select id="f-mode" onchange="render()"><option value="">Mode</option><option value="multi">Multi-license</option><option value="burn">Sell-once</option></select>
+          <select id="f-sort" onchange="render()"><option value="top">Top</option><option value="new">New</option><option value="price-lo">Price ↑</option><option value="price-hi">Price ↓</option></select>
+        </div>
+      </div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
 </div>
 
+<div id="view-dashboard" class="hidden">
+  <section class="market" style="padding-top:60px">
+    <div class="wrap">
+      <div class="market-head">
+        <div><div class="ey">Account</div><h2>Dashboard</h2></div>
+        <button class="btn ghost sm" onclick="go('market')">← Market</button>
+      </div>
+      <div class="kpis">
+        <div class="kpi"><div class="n" id="k-rev">$0</div><div class="l">Net earned</div></div>
+        <div class="kpi"><div class="n" id="k-sales">0</div><div class="l">Sold</div></div>
+        <div class="kpi"><div class="n" id="k-bought">0</div><div class="l">Bought</div></div>
+        <div class="kpi"><div class="n" id="k-score">New</div><div class="l">Score</div></div>
+      </div>
+      <div class="dash-tabs">
+        <button class="on" id="tab-sell" onclick="dashTab('sell')">Listings</button>
+        <button id="tab-buy" onclick="dashTab('buy')">Purchases</button>
+      </div>
+      <div id="dash-sell">
+        <div style="display:flex;justify-content:flex-end;margin-bottom:16px"><button class="btn sm" onclick="openList()">List a dataset</button></div>
+        <table class="tbl" id="tbl-listings"><thead><tr><th>Dataset</th><th>Tier</th><th>Mode</th><th>Price</th><th>Status</th><th>Sales</th></tr></thead><tbody></tbody></table>
+        <div class="empty hidden" id="empty-listings">No listings yet.</div>
+      </div>
+      <div id="dash-buy" class="hidden">
+        <table class="tbl" id="tbl-purchases"><thead><tr><th>Dataset</th><th>Tier</th><th>License</th><th>Paid</th><th>Access</th></tr></thead><tbody></tbody></table>
+        <div class="empty hidden" id="empty-purchases">No purchases yet.</div>
+      </div>
+    </div>
+  </section>
 </div>
-
-<div class="hero-right">
-<img src="logo.png" alt="FCF Ventures">
-</div>
-
-</section>
-
-<section class="container">
-
-<div class="section-title">
-Featured Datasets
-</div>
-
-<div class="dataset-grid">
-
-<div class="dataset-card">
-<div class="dataset-image"></div>
-<div class="dataset-category">Infrastructure</div>
-<div class="dataset-title">China SOE Infrastructure Mapping</div>
-<div class="dataset-description">
-Institutional-grade ownership mapping across EPCs, SOEs, SPVs, and infrastructure ecosystems.
-</div>
-<div class="dataset-footer">
-<span>Price Upon Request</span>
-<span>↗</span>
-</div>
-</div>
-
-<div class="dataset-card">
-<div class="dataset-image"></div>
-<div class="dataset-category">Capital Markets</div>
-<div class="dataset-title">Global Sovereign Capital Flows</div>
-<div class="dataset-description">
-Curated institutional capital flow datasets focused on sovereign wealth funds and strategic allocation.
-</div>
-<div class="dataset-footer">
-<span>Price Upon Request</span>
-<span>↗</span>
-</div>
-</div>
-
-<div class="dataset-card">
-<div class="dataset-image"></div>
-<div class="dataset-category">Energy</div>
-<div class="dataset-title">Energy Transition Intelligence</div>
-<div class="dataset-description">
-High-value infrastructure intelligence datasets across utilities, hydrogen, solar, and grids.
-</div>
-<div class="dataset-footer">
-<span>Price Upon Request</span>
-<span>↗</span>
-</div>
-</div>
-
-<div class="dataset-card">
-<div class="dataset-image"></div>
-<div class="dataset-category">Macro Intelligence</div>
-<div class="dataset-title">Strategic Infrastructure Signals</div>
-<div class="dataset-description">
-Institutional signal datasets integrating sovereign flows, financing, and infrastructure momentum.
-</div>
-<div class="dataset-footer">
-<span>Price Upon Request</span>
-<span>↗</span>
-</div>
-</div>
-
-</div>
-
-</section>
 
 <footer>
-<div class="container">
-
-<div class="footer-grid">
-
-<div>
-<h3>Free Cash Flow Ventures, LLC</h3>
-<p style="margin-top:10px; opacity:0.7;">
-Institutional Intelligence Infrastructure
-</p>
-</div>
-
-<div class="footer-links">
-
-<div class="footer-column">
-<h5>Platform</h5>
-<a href="index.html">Home</a>
-<a href="dashboard.html">Dashboard</a>
-</div>
-
-<div class="footer-column">
-<h5>Company</h5>
-<a href="about.html">About</a>
-<a href="mailto:info@freecashflowventures.com">Contact</a>
-</div>
-
-<div class="footer-column">
-<h5>Legal</h5>
-<a href="legal.html">Terms</a>
-</div>
-
-</div>
-</div>
-
-<div style="margin-top:50px; opacity:0.55; font-size:13px;">
-© 2026 Free Cash Flow Ventures, LLC. All rights reserved.
-</div>
-
-</div>
+  <div class="wrap foot">
+    <div class="brand"><span class="mark">FCF Ventures</span></div>
+    <div class="links"><a onclick="go('market')">Market</a><a onclick="openList()">Sell</a><a onclick="go('dashboard')">Dashboard</a><a href="legal.html">Legal</a></div>
+    <div class="copy">© 2026 Free Cash Flow Ventures, LLC · Delaware</div>
+  </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-<script src="supabase.js"></script>
-<script src="app.js"></script>
+<div class="overlay" id="overlay" onclick="if(event.target===this)closeModal()"><div class="modal" id="modal"></div></div>
 
+<!-- Supabase client + backend bridge (paste your keys in web/fcfv.js) -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="web/fcfv.js"></script>
+<script>
+const SCORE_META={elite:{cls:'s-elite',label:'Elite'},trusted:{cls:'s-trusted',label:'Trusted'},new:{cls:'s-new',label:'New'}};
+let DATASETS=[];      // loaded from Supabase
+let BOUGHT=[];        // this user's paid purchases
+let ME={id:null,name:'You'};
+const $=s=>document.querySelector(s);const money=n=>'$'+Number(n).toLocaleString('en-US');
+
+function go(v){$('#view-market').classList.toggle('hidden',v!=='market');$('#view-dashboard').classList.toggle('hidden',v!=='dashboard');if(v==='dashboard')renderDash();window.scrollTo(0,0)}
+function scrollToMarket(){go('market');setTimeout(()=>$('#market').scrollIntoView({behavior:'smooth'}),40)}
+function refreshStats(){$('#st-sets').textContent=DATASETS.filter(d=>!d.burned).length;$('#st-sellers').textContent=new Set(DATASETS.map(d=>d.seller)).size}
+function render(){
+  const q=$('#q').value.toLowerCase(),ft=$('#f-tier').value,fm=$('#f-mode').value,sort=$('#f-sort').value;
+  let rows=DATASETS.filter(d=>{if(ft&&d.tier!==ft)return false;if(fm&&d.mode!==fm)return false;if(q&&!(d.title+d.seller+d.cat+d.modality).toLowerCase().includes(q))return false;return true});
+  const rank={elite:3,trusted:2,new:1};
+  rows.sort((a,b)=>sort==='top'?(rank[b.score]-rank[a.score])||(b.sales-a.sales):sort==='new'?b.id-a.id:sort==='price-lo'?a.price-b.price:sort==='price-hi'?b.price-a.price:0);
+  $('#grid').innerHTML=rows.map(d=>{const sm=SCORE_META[d.score]||SCORE_META.new,owned=BOUGHT.some(b=>b.id===d.id),burned=d.burned;
+    return `<div class="${burned?'sold':''}"><div class="card" onclick="openDataset(${d.id})">
+      <div class="card-top"><span class="cat">${d.cat}</span><span class="tierpill ${d.tier.toLowerCase()}">${d.tier}</span></div>
+      <h3>${d.title}</h3>
+      <div class="meta"><span>${d.tokens}</span><span>${d.modality}</span><span>↻ ${d.fresh}</span></div>
+      <div class="seller-row"><div class="seller"><span class="av">${d.seller[0]}</span>${d.seller}</div><div class="score ${sm.cls}"><span class="dot"></span>${sm.label}</div></div>
+      <div class="card-foot"><div class="price">${money(d.price)}<small>${d.unit}</small></div>
+      ${burned?'<span class="burned-stamp">Burned</span>':owned?'<span class="modeflag" style="color:var(--ok)">Owned</span>':`<span class="modeflag ${d.mode==='burn'?'burn':''}">${d.mode==='burn'?'Sell-once':'Multi'}</span>`}</div>
+    </div></div>`}).join('')||'<div class="empty" style="grid-column:1/-1">No matches.</div>';
+}
+function openDataset(id){const d=DATASETS.find(x=>x.id===id);if(!d)return;const sm=SCORE_META[d.score]||SCORE_META.new,owned=BOUGHT.some(b=>b.id===d.id),burned=d.burned;
+  $('#modal').innerHTML=`<div class="modal-in">
+    <div class="modal-head"><div><div class="small">${d.cat} · ${d.tier}</div><h3>${d.title}</h3></div><button class="x" onclick="closeModal()">✕</button></div>
+    <div class="mrow"><span>${d.modality}</span><span>${d.tokens} tokens</span><span>${d.license}</span><span>↻ ${d.fresh}</span><span class="score ${sm.cls}" style="display:inline-flex"><span class="dot"></span>${sm.label} · ${d.sales} sales</span></div>
+    <p style="font-size:13px;line-height:1.85;color:var(--ink2);margin-bottom:20px">${d.desc}</p>
+    <div class="small" style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;opacity:.4;margin-bottom:10px">Free sample</div><div class="sample">${d.sample.replace(/</g,'&lt;')}</div>
+    ${burned?`<div class="note warn">Sold once and burned — permanently delisted.</div>`
+      :owned?`<div class="note">You own this. Access is watermarked to your account.</div><div class="modal-actions"><button class="btn" onclick="closeModal()">Download / API</button></div>`
+      :d.mode==='burn'?`<div class="note warn"><strong>Sell-once.</strong> Buy exclusive rights — the listing burns the instant you purchase.</div>${licenseBox(d,true)}<div class="modal-actions"><button class="btn ghost" onclick="closeModal()">Cancel</button><button class="btn" onclick="checkout(${d.id},'exclusive')">Buy exclusive · ${money(d.price)}</button></div>`
+      :`${licenseBox(d,false)}<div class="modal-actions"><button class="btn ghost" onclick="closeModal()">Cancel</button><button class="btn" onclick="checkout(${d.id},'standard')">Buy · ${money(d.price)}${d.unit}</button></div>`}
+  </div>`;openOverlay();}
+function licenseBox(d,excl){return `<div class="small" style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;opacity:.4;margin-bottom:10px">License</div><div class="licbox sel"><div class="lt"><span>${excl?'Exclusive':'Multi-license'}</span><strong>${money(d.price)}${d.unit}</strong></div><div class="ld">${excl?'One buyer. Full exclusivity. Burns on purchase. Watermarked.':'Non-exclusive use per '+d.license+'. Watermarked to you.'}</div></div>`}
+
+// Collect buyer contact, then hand off to Stripe Checkout (test mode).
+function checkout(id,type){const d=DATASETS.find(x=>x.id===id);
+  $('#modal').innerHTML=`<div class="modal-in">
+    <div class="modal-head"><div><div class="small">Checkout</div><h3>${d.title}</h3></div><button class="x" onclick="closeModal()">✕</button></div>
+    <div class="row2"><div class="field"><label>Work email</label><input id="co-email" type="email" placeholder="you@lab.ai"></div><div class="field"><label>Org</label><input id="co-org" type="text" placeholder="Acme AI"></div></div>
+    <div class="note">${type==='exclusive'?'<strong>'+money(d.price)+'</strong> · exclusive. On payment this dataset is burned.':'<strong>'+money(d.price)+d.unit+'</strong> · '+d.license+'.'} Fee 20%, paid by seller. You'll be redirected to Stripe (test mode — use card 4242 4242 4242 4242).</div>
+    <div class="modal-actions"><button class="btn ghost" onclick="openDataset(${id})">← Back</button><button class="btn" id="co-go" onclick="startCheckout(${id},'${type}')">Continue to payment</button></div></div>`;}
+async function startCheckout(id,type){
+  const email=$('#co-email').value.trim(),org=$('#co-org').value.trim(),btn=$('#co-go');
+  if(!email){alert('Enter your work email.');return}
+  btn.textContent='Redirecting…';btn.disabled=true;
+  try{
+    const {url}=await FCFV.createCheckout({dataset_id:id,license_type:type,email,org});
+    window.location.href=url;
+  }catch(e){alert('Checkout failed: '+e.message);btn.textContent='Continue to payment';btn.disabled=false}
+}
+function openList(){
+  $('#modal').innerHTML=`<div class="modal-in">
+    <div class="modal-head"><div><div class="small">Sell</div><h3>List a dataset</h3></div><button class="x" onclick="closeModal()">✕</button></div>
+    <div class="field"><label>Title</label><input id="l-title" type="text" placeholder="Agent planning traces"></div>
+    <div class="row2"><div class="field"><label>Category</label><select id="l-cat"><option>Agent</option><option>Training</option><option>Eval</option><option>Finance</option><option>Alt-Data</option><option>Multimodal</option></select></div><div class="field"><label>Tier</label><select id="l-tier"><option value="Bronze">Bronze</option><option value="Silver" selected>Silver</option><option value="Gold">Gold</option></select></div></div>
+    <div class="field"><label>Description</label><textarea id="l-desc" placeholder="What it is, how it was built."></textarea></div>
+    <div class="row2"><div class="field"><label>Modality</label><input id="l-mod" type="text" value="JSONL"></div><div class="field"><label>Tokens</label><input id="l-tok" type="text" placeholder="500M"></div></div>
+    <div class="small" style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;opacity:.4;margin:6px 0 10px">Mode</div>
+    <div class="licbox sel" id="lm-multi" onclick="pickMode('multi')"><div class="lt"><span>Multi-license</span><span style="font-size:11px;opacity:.55">recurring</span></div><div class="ld">Sell to many buyers.</div></div>
+    <div class="licbox" id="lm-burn" onclick="pickMode('burn')"><div class="lt"><span>Sell-once</span><span style="font-size:11px;opacity:.55">premium</span></div><div class="ld">One buyer, then burned forever.</div></div>
+    <div class="row2"><div class="field"><label>Price USD</label><input id="l-price" type="number" placeholder="2500"></div><div class="field"><label>License</label><input id="l-lic" type="text" value="Commercial"></div></div>
+    <div class="field" style="margin-top:2px"><label style="display:flex;gap:9px;align-items:flex-start;cursor:pointer;text-transform:none;letter-spacing:0;opacity:.75;font-size:11px;line-height:1.6"><input type="checkbox" id="l-rights" style="width:auto;margin-top:2px">I hold resale rights; no PII or infringing content.</label></div>
+    <div class="modal-actions"><button class="btn ghost" onclick="closeModal()">Cancel</button><button class="btn" id="l-go" onclick="submitListing()">Publish</button></div></div>`;
+  window._listMode='multi';openOverlay();}
+function pickMode(m){window._listMode=m;$('#lm-multi').classList.toggle('sel',m==='multi');$('#lm-burn').classList.toggle('sel',m==='burn')}
+async function submitListing(){const t=$('#l-title').value.trim(),p=parseInt($('#l-price').value,10);if(!t)return alert('Add a title.');if(!p||p<1)return alert('Set a price.');if(!$('#l-rights').checked)return alert('Confirm the rights warranty.');
+  const tier=$('#l-tier').value,btn=$('#l-go');btn.textContent='Publishing…';btn.disabled=true;
+  try{
+    await FCFV.createListing({title:t,category:$('#l-cat').value,tier,mode:window._listMode,price:p,license:$('#l-lic').value,tokens:$('#l-tok').value,modality:$('#l-mod').value,description:$('#l-desc').value,rights:true});
+    await reload();
+    $('#modal').innerHTML=`<div class="modal-in"><div class="success"><div class="big">✓</div><h3 style="font-size:22px;font-weight:500;letter-spacing:-.035em;margin-bottom:14px">Listed</h3><p><strong>${t}</strong> is live — ${tier} · ${window._listMode==='burn'?'sell-once':'multi-license'}. Rights warranty logged.</p><div class="modal-actions" style="max-width:300px;margin:26px auto 0"><button class="btn ghost" onclick="closeModal();render();refreshStats()">Market</button><button class="btn" onclick="closeModal();render();refreshStats();go('dashboard')">Dashboard</button></div></div></div>`;
+  }catch(e){alert('Listing failed: '+e.message);btn.textContent='Publish';btn.disabled=false}
+}
+function renderDash(){const mine=DATASETS.filter(d=>d.seller_id&&d.seller_id===ME.id),sold=mine.reduce((a,d)=>a+d.sales,0),net=mine.reduce((a,d)=>a+d.sales*d.price*0.8,0);
+  $('#k-rev').textContent=money(Math.round(net));$('#k-sales').textContent=sold;$('#k-bought').textContent=BOUGHT.length;$('#k-score').textContent=sold>=20?'Elite':sold>=3?'Trusted':'New';
+  $('#tbl-listings tbody').innerHTML=mine.map(d=>`<tr><td>${d.title}</td><td>${d.tier}</td><td>${d.mode==='burn'?'Sell-once':'Multi'}</td><td>${money(d.price)}${d.unit}</td><td><span class="statuspill ${d.burned?'burned':'live'}">${d.burned?'Burned':'Live'}</span></td><td>${d.sales}</td></tr>`).join('');
+  $('#empty-listings').classList.toggle('hidden',mine.length>0);$('#tbl-listings').classList.toggle('hidden',mine.length===0);
+  $('#tbl-purchases tbody').innerHTML=BOUGHT.map(b=>{const d=DATASETS.find(x=>x.id===b.id)||{title:'(removed)',tier:'—'};return `<tr><td>${d.title}</td><td>${d.tier}</td><td>${b.license}</td><td>${money(b.paid)}</td><td><button class="btn sm ghost" onclick="alert('Download / API — watermarked.')">Access</button></td></tr>`}).join('');
+  $('#empty-purchases').classList.toggle('hidden',BOUGHT.length>0);$('#tbl-purchases').classList.toggle('hidden',BOUGHT.length===0);}
+function dashTab(t){$('#tab-sell').classList.toggle('on',t==='sell');$('#tab-buy').classList.toggle('on',t==='buy');$('#dash-sell').classList.toggle('hidden',t!=='sell');$('#dash-buy').classList.toggle('hidden',t!=='buy')}
+function openOverlay(){$('#overlay').classList.add('on');document.body.style.overflow='hidden'}
+function closeModal(){$('#overlay').classList.remove('on');document.body.style.overflow=''}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+
+// ---- backend wiring ----
+async function reload(){DATASETS=await FCFV.fetchDatasets();BOUGHT=await FCFV.fetchPurchases();render();refreshStats();}
+function clearReturn(){history.replaceState({},'',location.pathname);}
+function handleReturn(){
+  const p=new URLSearchParams(location.search);
+  if(p.get('status')==='success'){
+    openOverlay();
+    $('#modal').innerHTML=`<div class="modal-in"><div class="success"><div class="big">✓</div><h3 style="font-size:22px;font-weight:500;letter-spacing:-.035em;margin-bottom:14px">Purchase complete</h3><p>Your license is active — watermarked, download + API. It will appear in your dashboard once Stripe confirms (a second or two).</p><div class="modal-actions" style="max-width:300px;margin:26px auto 0"><button class="btn ghost" onclick="clearReturn();closeModal()">Browse</button><button class="btn" onclick="clearReturn();closeModal();go('dashboard')">Dashboard</button></div></div></div>`;
+    setTimeout(reload,1500);setTimeout(reload,4000); // webhook may lag the redirect slightly
+  }else if(p.get('status')==='cancel'){clearReturn();}
+}
+async function boot(){
+  try{
+    ME=await FCFV.init();
+    await reload();
+    handleReturn();
+  }catch(e){
+    console.error(e);
+    $('#grid').innerHTML='<div class="empty" style="grid-column:1/-1">Backend not connected. Add your Supabase URL + anon key in <strong>web/fcfv.js</strong>, enable anonymous sign-ins, and reload.<br><br><span style="opacity:.6">'+(e.message||e)+'</span></div>';
+  }
+}
+boot();
+</script>
 </body>
 </html>

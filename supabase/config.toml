@@ -1,0 +1,13 @@
+project_id = "fcf-ventures"
+
+# All three functions authenticate the caller manually (or, for the webhook, via a
+# Stripe signature), so the gateway JWT check is disabled. This also lets the browser
+# send anonymous-session tokens and CORS preflights through cleanly.
+[functions.create-checkout]
+verify_jwt = false
+
+[functions.stripe-webhook]
+verify_jwt = false
+
+[functions.create-listing]
+verify_jwt = false
