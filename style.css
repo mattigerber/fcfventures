@@ -1,368 +1,66 @@
-*
-{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* style.css — shared design system for the static pages (legal, privacy, terms).
+   Mirrors the marketplace (index.html) design tokens exactly so every page is uniform. */
+:root{
+  --bg:#e6e6e6;
+  --surface:#eaeaea;
+  --ink:#0a0a0a;
+  --ink2:rgba(10,10,10,.62);
+  --ink3:rgba(10,10,10,.40);
+  --hair:rgba(10,10,10,.08);
+  --hair2:rgba(10,10,10,.14);
+  --ease:cubic-bezier(.4,0,.2,1);
 }
-
-body
-{
-    background: #E6E6E6;
-    color: #000;
-    font-family: 'Inter', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:'IBM Plex Mono',monospace;font-weight:400;
+  -webkit-font-smoothing:antialiased;line-height:1.55;letter-spacing:-.01em;
 }
+.wrap{width:90%;max-width:1080px;margin:0 auto}
+.topbar{height:6px;background:var(--ink)}
 
-.container
-{
-    width: 92%;
-    max-width: 1440px;
-    margin: 0 auto;
-}
+/* header — identical to the marketplace */
+header{position:sticky;top:0;z-index:40;background:rgba(230,230,230,.82);backdrop-filter:saturate(160%) blur(14px);border-bottom:1px solid var(--hair)}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
+.brand{display:flex;align-items:center;gap:11px;cursor:pointer;text-decoration:none;color:var(--ink)}
+.brand .logo{width:22px;height:22px;object-fit:contain;display:block}
+.brand .mark{font-size:14px;font-weight:500;letter-spacing:-.01em}
+.brand .tag{font-size:9px;letter-spacing:.22em;text-transform:uppercase;opacity:.4}
+.nav-links{display:flex;align-items:center;gap:30px}
+.nav-links a{font-family:inherit;font-size:12px;font-weight:400;letter-spacing:.01em;color:var(--ink);text-decoration:none;opacity:.55;transition:opacity .25s var(--ease)}
+.nav-links a:hover{opacity:1}
 
-header
-{
-    padding: 36px 0;
-}
+/* buttons — pill, identical */
+.btn{font-family:inherit;font-weight:400;cursor:pointer;border:1px solid var(--ink);background:var(--ink);color:var(--bg);font-size:12px;letter-spacing:.01em;padding:11px 22px;border-radius:100px;text-decoration:none;display:inline-block;transition:all .25s var(--ease)}
+.btn:hover{transform:translateY(-1px);opacity:.88}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--hair2)}
+.btn.ghost:hover{border-color:var(--ink);transform:translateY(-1px)}
+.btn.sm{padding:8px 16px;font-size:11px}
 
-.nav
-{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+/* legal content */
+.legal{padding:92px 0 30px}
+.legal .eyebrow{font-size:11px;letter-spacing:.24em;text-transform:uppercase;opacity:.4}
+.legal h1{font-size:54px;line-height:1.0;letter-spacing:-.055em;font-weight:500;margin-top:18px}
+.legal .updated{font-size:12px;color:var(--ink2);margin-top:18px}
+.section{margin-top:46px;padding-top:30px;border-top:1px solid var(--hair);max-width:768px}
+.section h2{font-size:12px;letter-spacing:.16em;text-transform:uppercase;opacity:.5;margin-bottom:16px}
+.section p{font-size:14px;line-height:1.95;color:var(--ink2)}
+.doclink{display:inline-block;color:var(--ink);text-decoration:none;font-size:14px;opacity:.85;padding:4px 0;transition:opacity .25s var(--ease)}
+.doclink:hover{opacity:1}
+.back{display:inline-block;margin-top:64px;font-size:12px;text-decoration:none;color:var(--ink);opacity:.6;transition:opacity .25s var(--ease)}
+.back:hover{opacity:1}
 
-.brand
-{
-    display: flex;
-    align-items: center;
-    gap: 18px;
-}
+/* footer — identical to the marketplace */
+footer{padding:60px 0;border-top:1px solid var(--hair);margin-top:90px}
+.foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+.foot .links{display:flex;gap:26px;flex-wrap:wrap}
+.foot a{font-size:12px;color:var(--ink);text-decoration:none;opacity:.5;transition:opacity .25s var(--ease)}
+.foot a:hover{opacity:1}
+.foot .copy{font-size:10px;opacity:.35;width:100%;margin-top:18px}
 
-.brand img
-{
-    width: 58px;
-    height: 58px;
-    object-fit: contain;
-}
-
-.brand-text h1
-{
-    font-size: 28px;
-    font-weight: 600;
-    letter-spacing: -0.04em;
-}
-
-.brand-text p
-{
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    margin-top: 4px;
-}
-
-nav
-{
-    display: flex;
-    gap: 48px;
-}
-
-nav a
-{
-    text-decoration: none;
-    color: #000;
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-}
-
-.hero
-{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    min-height: 78vh;
-    gap: 60px;
-}
-
-.hero-left small
-{
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    font-size: 12px;
-}
-
-.hero-left h2
-{
-    font-size: 78px;
-    line-height: 0.98;
-    letter-spacing: -0.06em;
-    max-width: 580px;
-    margin-top: 28px;
-    font-weight: 600;
-}
-
-.hero-left p
-{
-    margin-top: 34px;
-    font-size: 22px;
-    line-height: 1.7;
-    max-width: 640px;
-    color: rgba(0,0,0,0.75);
-}
-
-.hero-button
-{
-    margin-top: 48px;
-    display: inline-flex;
-    align-items: center;
-    gap: 18px;
-    background: #000;
-    color: white;
-    text-decoration: none;
-    padding: 24px 38px;
-    border-radius: 18px;
-    font-size: 14px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-}
-
-.hero-note
-{
-    margin-top: 18px;
-    font-size: 14px;
-    opacity: 0.7;
-}
-
-.hero-right
-{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.hero-right img
-{
-    width: 95%;
-    max-width: 720px;
-}
-
-.section-title
-{
-    font-size: 13px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    margin-bottom: 28px;
-}
-
-.dataset-grid
-{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 28px;
-    margin-top: 30px;
-}
-
-.dataset-card
-{
-    border: 1px solid rgba(0,0,0,0.12);
-    border-radius: 28px;
-    padding: 26px;
-    background: rgba(255,255,255,0.22);
-    transition: 0.3s ease;
-}
-
-.dataset-card:hover
-{
-    transform: translateY(-8px);
-    border-color: rgba(0,0,0,0.22);
-}
-
-.dataset-image
-{
-    height: 220px;
-    border-radius: 22px;
-    background: linear-gradient(to bottom right, #0a0a0a, #2c2c2c);
-    margin-bottom: 24px;
-}
-
-.dataset-category
-{
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.16em;
-    opacity: 0.7;
-}
-
-.dataset-title
-{
-    font-size: 34px;
-    line-height: 1.08;
-    letter-spacing: -0.05em;
-    margin-top: 14px;
-    font-weight: 600;
-}
-
-.dataset-description
-{
-    margin-top: 18px;
-    line-height: 1.8;
-    font-size: 15px;
-    opacity: 0.78;
-}
-
-.dataset-footer
-{
-    margin-top: 28px;
-    padding-top: 22px;
-    border-top: 1px solid rgba(0,0,0,0.08);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.dataset-footer span
-{
-    font-size: 12px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-}
-
-footer
-{
-    margin-top: 120px;
-    padding: 50px 0 80px;
-    border-top: 1px solid rgba(0,0,0,0.08);
-}
-
-.footer-grid
-{
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-
-.footer-links
-{
-    display: flex;
-    gap: 80px;
-}
-
-.footer-column h5
-{
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.16em;
-    margin-bottom: 18px;
-}
-
-.footer-column a
-{
-    display: block;
-    margin-bottom: 12px;
-    text-decoration: none;
-    color: rgba(0,0,0,0.78);
-}
-
-.page
-{
-    padding: 140px 0;
-}
-
-.page h2
-{
-    font-size: 72px;
-    letter-spacing: -0.06em;
-    margin-bottom: 28px;
-}
-
-.page p
-{
-    max-width: 800px;
-    line-height: 1.9;
-    font-size: 18px;
-    color: rgba(0,0,0,0.74);
-}
-
-.form-wrap
-{
-    max-width: 720px;
-    margin-top: 50px;
-}
-
-input,
-textarea
-{
-    width: 100%;
-    margin-bottom: 18px;
-    border: 1px solid rgba(0,0,0,0.1);
-    background: rgba(255,255,255,0.4);
-    padding: 22px;
-    border-radius: 18px;
-    font-size: 16px;
-    outline: none;
-}
-
-textarea
-{
-    min-height: 180px;
-    resize: vertical;
-}
-
-button
-{
-    border: none;
-    background: black;
-    color: white;
-    padding: 22px 34px;
-    border-radius: 18px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    cursor: pointer;
-}
-
-.dashboard-box
-{
-    margin-top: 50px;
-    padding: 40px;
-    border-radius: 28px;
-    background: rgba(255,255,255,0.24);
-    border: 1px solid rgba(0,0,0,0.08);
-}
-
-@media (max-width: 1200px)
-{
-    .dataset-grid
-    {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .hero
-    {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 768px)
-{
-    nav
-    {
-        display: none;
-    }
-
-    .dataset-grid
-    {
-        grid-template-columns: 1fr;
-    }
-
-    .hero-left h2
-    {
-        font-size: 48px;
-    }
-
-    .page h2
-    {
-        font-size: 44px;
-    }
+@media(max-width:560px){
+  .nav-links{gap:18px}
+  .legal h1{font-size:34px}
+  .legal{padding:64px 0 20px}
 }

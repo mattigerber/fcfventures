@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FCF Ventures — LLM &amp; Agent Data</title>
+<link rel="icon" href="favicon.ico" sizes="any">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -32,7 +33,8 @@ body{
 /* nav — quiet */
 header{position:sticky;top:0;z-index:40;background:rgba(230,230,230,.82);backdrop-filter:saturate(160%) blur(14px);border-bottom:1px solid var(--hair)}
 .nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
-.brand{display:flex;align-items:baseline;gap:11px;cursor:pointer}
+.brand{display:flex;align-items:center;gap:11px;cursor:pointer}
+.brand .logo{width:22px;height:22px;object-fit:contain;display:block}
 .brand .mark{font-size:14px;font-weight:500;letter-spacing:-.01em}
 .brand .tag{font-size:9px;letter-spacing:.22em;text-transform:uppercase;opacity:.4}
 .nav-links{display:flex;align-items:center;gap:30px}
@@ -166,7 +168,7 @@ footer{padding:60px 0;border-top:1px solid var(--hair)}
 
 <header>
   <div class="wrap nav">
-    <div class="brand" onclick="go('market')"><span class="mark">FCF Ventures</span><span class="tag">Data</span></div>
+    <div class="brand" onclick="go('market')"><img class="logo" src="logo.png" alt=""><span class="mark">FCF Ventures</span><span class="tag">Data</span></div>
     <div class="nav-links">
       <a onclick="go('market')">Market</a>
       <a onclick="go('dashboard')">Dashboard</a>
@@ -253,8 +255,8 @@ footer{padding:60px 0;border-top:1px solid var(--hair)}
 
 <footer>
   <div class="wrap foot">
-    <div class="brand"><span class="mark">FCF Ventures</span></div>
-    <div class="links"><a onclick="go('market')">Market</a><a onclick="openList()">Sell</a><a onclick="go('dashboard')">Dashboard</a><a href="legal.html">Legal</a></div>
+    <div class="brand"><img class="logo" src="logo.png" alt=""><span class="mark">FCF Ventures</span></div>
+    <div class="links"><a onclick="go('market')">Market</a><a onclick="openList()">Sell</a><a onclick="go('dashboard')">Dashboard</a><a href="legal.html">Legal</a><a href="privacy-policy.html">Privacy</a><a href="terms-of-service.html">Terms</a></div>
     <div class="copy">© 2026 Free Cash Flow Ventures, LLC · Delaware</div>
   </div>
 </footer>
@@ -368,6 +370,8 @@ async function boot(){
     ME=await FCFV.init();
     await reload();
     handleReturn();
+    if(location.hash==='#dashboard')go('dashboard');
+    else if(location.hash==='#list')openList();
   }catch(e){
     console.error(e);
     $('#grid').innerHTML='<div class="empty" style="grid-column:1/-1">Backend not connected. Add your Supabase URL + anon key in <strong>web/fcfv.js</strong>, enable anonymous sign-ins, and reload.<br><br><span style="opacity:.6">'+(e.message||e)+'</span></div>';

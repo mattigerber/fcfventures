@@ -3,97 +3,64 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free Cash Flow Ventures, LLC</title>
+<title>Legal — FCF Ventures</title>
 <link rel="icon" href="favicon.ico" sizes="any">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="topbar"></div>
 
 <header>
-<div class="container nav">
-
-<div class="brand">
-<img src="logo.png" alt="FCF Ventures Logo">
-
-<div class="brand-text">
-<h1>Free Cash Flow Ventures, LLC</h1>
-<p>Delaware</p>
-</div>
-</div>
-
-<nav>
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="dashboard.html">Dashboard</a>
-<a href="legal.html">Legal</a>
-</nav>
-
-</div>
+  <div class="wrap nav">
+    <a class="brand" href="index.html"><img class="logo" src="logo.png" alt=""><span class="mark">FCF Ventures</span><span class="tag">Data</span></a>
+    <div class="nav-links">
+      <a href="index.html">Market</a>
+      <a href="index.html#dashboard">Dashboard</a>
+      <a href="legal.html">Legal</a>
+      <a class="btn sm ghost" href="index.html#list">List</a>
+    </div>
+  </div>
 </header>
 
-<section class="page container">
+<section class="legal wrap">
+  <div class="eyebrow">Legal</div>
+  <h1>Legal.</h1>
+  <p class="updated">Last updated June 2026 · Free Cash Flow Ventures, LLC · Delaware</p>
 
-<h2>
-Legal.
-</h2>
+  <div class="section">
+    <h2>Overview</h2>
+    <p>All datasets, intelligence systems, and proprietary materials distributed through Free Cash Flow Ventures, LLC remain confidential and protected under applicable intellectual property laws. Redistribution, replication, resale, or unauthorized transfer is prohibited. Access may be revoked at any time.</p>
+  </div>
 
-<p>
-All datasets, intelligence systems, and proprietary materials distributed through Free Cash Flow Ventures, LLC remain confidential and protected under applicable intellectual property laws.
-<br><br>
-Redistribution, replication, resale, or unauthorized transfer is prohibited.
-<br><br>
-Access may be revoked at any time.
-</p>
+  <div class="section">
+    <h2>Documents</h2>
+    <p>
+      <a class="doclink" href="privacy-policy.html">Privacy Policy →</a><br>
+      <a class="doclink" href="terms-of-service.html">Terms of Service →</a>
+    </p>
+  </div>
 
+  <div class="section">
+    <h2>Contact</h2>
+    <p>Institutional inquiries — <a class="doclink" href="mailto:info@freecashflowventures.com">info@freecashflowventures.com</a></p>
+  </div>
+
+  <a class="back" href="index.html">← Back to market</a>
 </section>
 
 <footer>
-<div class="container">
-
-<div class="footer-grid">
-
-<div>
-<h3>Free Cash Flow Ventures, LLC</h3>
-<p style="margin-top:10px; opacity:0.7;">
-Institutional Intelligence Infrastructure
-</p>
-</div>
-
-<div class="footer-links">
-
-<div class="footer-column">
-<h5>Platform</h5>
-<a href="index.html">Home</a>
-<a href="dashboard.html">Dashboard</a>
-</div>
-
-<div class="footer-column">
-<h5>Company</h5>
-<a href="about.html">About</a>
-<a href="mailto:info@freecashflowventures.com">Contact</a>
-</div>
-
-<div class="footer-column">
-<h5>Legal</h5>
-<a href="legal.html">Terms</a>
-</div>
-
-</div>
-</div>
-
-<div style="margin-top:50px; opacity:0.55; font-size:13px;">
-© 2026 Free Cash Flow Ventures, LLC. All rights reserved.
-</div>
-
-</div>
+  <div class="wrap foot">
+    <div class="brand"><img class="logo" src="logo.png" alt=""><span class="mark">FCF Ventures</span></div>
+    <div class="links">
+      <a href="index.html">Market</a>
+      <a href="index.html#list">Sell</a>
+      <a href="legal.html">Legal</a>
+      <a href="privacy-policy.html">Privacy</a>
+      <a href="terms-of-service.html">Terms</a>
+    </div>
+    <div class="copy">© 2026 Free Cash Flow Ventures, LLC · Delaware</div>
+  </div>
 </footer>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-<script src="supabase.js"></script>
-<script src="app.js"></script>
-
 </body>
 </html>

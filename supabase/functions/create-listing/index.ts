@@ -16,6 +16,7 @@ const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), { status, headers: { ...cors, "Content-Type": "application/json" } });
 
 const TIERS = ["Bronze", "Silver", "Gold"];
+const CATEGORIES = ["Agent", "Training", "Eval", "Finance", "Alt-Data", "Multimodal"];
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: cors });
@@ -31,22 +32,43 @@ Deno.serve(async (req) => {
     if (!user) return json({ error: "unauthorized" }, 401);
 
     const b = await req.json();
-    const title = (b.title ?? "").trim();
+
+    // ---- input validation (reject early, with clear messages) ----
+    const title = String(b.title ?? "").trim();
+    const description = String(b.description ?? "").trim();
     const price = parseInt(b.price, 10);
-    if (!title) return json({ error: "title required" }, 400);
-    if (!price || price < 1) return json({ error: "valid price required" }, 400);
-    if (!b.rights) return json({ error: "rights warranty must be confirmed" }, 400);
+    if (title.length < 3 || title.length > 120) return json({ error: "title must be 3–120 characters" }, 400);
+    if (description.length > 2000) return json({ error: "description too long (max 2000 characters)" }, 400);
+    if (!Number.isFinite(price) || price < 1 || price > 1_000_000) return json({ error: "price must be between 1 and 1,000,000 USD" }, 400);
+    if (b.rights !== true) return json({ error: "rights warranty must be confirmed" }, 400);
+
+    // ---- normalize / sanitize against whitelists + length caps ----
+    const category = CATEGORIES.includes(b.category) ? b.category : "Training";
+    const tier = TIERS.includes(b.tier) ? b.tier : "Silver";
+    const mode = b.mode === "burn" ? "burn" : "multi";
+    const tokens = (String(b.tokens ?? "").trim().slice(0, 24)) || "—";
+    const modality = (String(b.modality ?? "").trim().slice(0, 24)) || "—";
+    const licenseIn = String(b.license ?? "").trim().slice(0, 40);
 
     const admin = createClient(SUPABASE_URL, SERVICE_KEY);
+
+    // ---- rate limiting: cap spam from the open/anonymous API ----
+    const oneHourAgo = new Date(Date.now() - 3600_000).toISOString();
+    const { count: recent } = await admin.from("datasets")
+      .select("id", { count: "exact", head: true })
+      .eq("seller_id", user.id).gte("created_at", oneHourAgo);
+    if ((recent ?? 0) >= 5) return json({ error: "rate limit: max 5 listings per hour" }, 429);
+
+    const { count: total } = await admin.from("datasets")
+      .select("id", { count: "exact", head: true }).eq("seller_id", user.id);
+    if ((total ?? 0) >= 30) return json({ error: "account listing cap reached (30)" }, 429);
+
     const { data: prof } = await admin.from("profiles").select("display_name").eq("id", user.id).maybeSingle();
     const seller_name = prof?.display_name ?? "Anonymous Seller";
 
-    const mode = b.mode === "burn" ? "burn" : "multi";
-    const tier = TIERS.includes(b.tier) ? b.tier : "Silver";
-
     const row = {
       title,
-      category: b.category || "Training",
+      category,
       tier,
       mode,
       price_cents: price * 100,
@@ -55,11 +77,11 @@ Deno.serve(async (req) => {
       seller_name,
       score: "new",
       sales: 0,
-      tokens: b.tokens || "—",
-      modality: b.modality || "—",
-      license: mode === "burn" ? "Exclusive" : (b.license || "Commercial"),
+      tokens,
+      modality,
+      license: mode === "burn" ? "Exclusive" : (licenseIn || "Commercial"),
       fresh: tier === "Gold" ? "Weekly" : "Static",
-      description: b.description || "(no description)",
+      description: description || "(no description)",
       sample: "(sample auto-generated from upload)",
       rights_warranty: true,
     };
